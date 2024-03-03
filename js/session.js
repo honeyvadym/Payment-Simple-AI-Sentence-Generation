@@ -11,7 +11,7 @@ function getClients() {
     window.location.href = "./dashboard.html";
   }
   $.ajax({
-    url: "https://api.olyvhealth.com/clients",
+    url: "https://toddles-api.phantominteractive.com.au/clients",
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -318,7 +318,7 @@ function uploadRecording() {
   var recordingType = $("#recording_type").val();
   var clientId = localStorage.getItem("client_id");
   $.ajax({
-    url: `https://api.olyvhealth.com/upload?type=${recordingType}&client=${clientId}`,
+    url: `https://toddles-api.phantominteractive.com.au/upload?type=${recordingType}&client=${clientId}`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -348,7 +348,7 @@ function uploadRecording() {
         });
 
         $.ajax({
-          url: "https://api.olyvhealth.com/observations",
+          url: "https://toddles-api.phantominteractive.com.au/observations",
           type: "POST",
           data: JSON.stringify({
             client: clientId,
@@ -444,7 +444,7 @@ function createDownloadLink(blob, encoding, filename = "") {
 
 function createBlankNote() {
   $.ajax({
-    url: "https://api.olyvhealth.com/notes_blank",
+    url: "https://toddles-api.phantominteractive.com.au/notes_blank",
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -501,10 +501,10 @@ function resetNotes() {
   $(".docs-detail-description").val("");
 }
 
-$("#guide").click(function() {
-    createVideoModal("session");
-    $("#guideModal").modal({
-        backdrop: 'static',
-        keyboard: true
-    });
-})
+$("#guide").click(function () {
+  createVideoModal("session");
+  $("#guideModal").modal({
+    backdrop: "static",
+    keyboard: true,
+  });
+});

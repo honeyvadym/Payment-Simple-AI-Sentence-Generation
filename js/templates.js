@@ -14,7 +14,7 @@ $(function () {
 function getTemplates() {
   if (allTemplates === null) {
     $.ajax({
-      url: "https://api.olyvhealth.com/templates",
+      url: "https://toddles-api.phantominteractive.com.au/templates",
       type: "GET",
       headers: {
         Authorization: getAuthHeader(),
@@ -50,7 +50,7 @@ function getTemplates() {
 
 function getBlocks() {
   $.ajax({
-    url: `https://api.olyvhealth.com/blocks`,
+    url: `https://toddles-api.phantominteractive.com.au/blocks`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -137,7 +137,11 @@ function goEditTemplatePage(templateId) {
     currentTemplate.sections.map((s) => {
       if (s.type === "block") {
         content +=
-          '<span class="added-block" block-key="'+s.content+'" >' + allBlocks[s.content] + '</span><br split="1">';
+          '<span class="added-block" block-key="' +
+          s.content +
+          '" >' +
+          allBlocks[s.content] +
+          '</span><br split="1">';
       } else if (s.type === "text") {
         content += s.content + '<br split="1">';
       } else {
@@ -182,7 +186,7 @@ function saveTemplate() {
         } else {
           sections.push({
             type: "block",
-            content: $(h).attr('block-key'),
+            content: $(h).attr("block-key"),
           });
         }
       } else {
@@ -211,7 +215,7 @@ function saveTemplate() {
   $("#blockListButton").hide();
   $(".load-icon").fadeIn();
   $.ajax({
-    url: `https://api.olyvhealth.com/template_save`,
+    url: `https://toddles-api.phantominteractive.com.au/template_save`,
     type: "POST",
     headers: {
       Authorization: getAuthHeader(),
@@ -296,7 +300,7 @@ function deleteTemplate() {
   $(".load-icon").fadeIn();
   var templateId = $("#delete_template_id").val();
   $.ajax({
-    url: `https://api.olyvhealth.com/template_delete`,
+    url: `https://toddles-api.phantominteractive.com.au/template_delete`,
     type: "POST",
     data: JSON.stringify({
       id: templateId,
@@ -462,7 +466,8 @@ function makeDrop($item, custom = false) {
           var dropText = "";
           var dropClass = "new word";
           if (custom) {
-            dropText = "eg: Summarise relevant information of the treatment for the client in 30 words";
+            dropText =
+              "eg: Summarise relevant information of the treatment for the client in 30 words";
             dropClass += " custom";
           } else {
             dropText = ui.draggable.attr("data");
@@ -741,7 +746,7 @@ function sendCreateTemplateRequest() {
     title: $templateTitle,
   };
   $.ajax({
-    url: `https://api.olyvhealth.com/template`,
+    url: `https://toddles-api.phantominteractive.com.au/template`,
     type: "POST",
     data: JSON.stringify(requestData),
     headers: {
@@ -790,17 +795,14 @@ function showNewTemplateAlert(status, msg) {
   }
 }
 
-
 function getKeyByValue(object, value) {
-  return Object.keys(object).find(key => object[key] === value);
+  return Object.keys(object).find((key) => object[key] === value);
 }
 
-
-
-$("#guide").click(function() {
-    createVideoModal("template");
-    $("#guideModal").modal({
-        backdrop: 'static',
-        keyboard: true
-    });
-})
+$("#guide").click(function () {
+  createVideoModal("template");
+  $("#guideModal").modal({
+    backdrop: "static",
+    keyboard: true,
+  });
+});

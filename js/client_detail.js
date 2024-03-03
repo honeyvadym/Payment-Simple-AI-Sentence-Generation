@@ -180,7 +180,7 @@ function uploadRecording() {
 
   var recordingType = $("#recording_type").val();
   $.ajax({
-    url: `https://api.olyvhealth.com/upload?type=${recordingType}`,
+    url: `https://toddles-api.phantominteractive.com.au/upload?type=${recordingType}`,
     type: "GET",
     headers: {
       Authorization: Authorization,
@@ -284,7 +284,7 @@ var allDocs = null;
 
 function getNotes() {
   $.ajax({
-    url: `https://api.olyvhealth.com/docs`,
+    url: `https://toddles-api.phantominteractive.com.au/docs`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -327,7 +327,7 @@ function gotoDocDetail(id, inactive) {
   $(".client-docs-detail-box").removeClass("hidden");
   $("#btn_approve").data("doc-id", id);
   $.ajax({
-    url: `https://api.olyvhealth.com/document?id=${id}`,
+    url: `https://toddles-api.phantominteractive.com.au/document?id=${id}`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -433,7 +433,7 @@ function approveDoc() {
   };
 
   $.ajax({
-    url: "https://api.olyvhealth.com/approve",
+    url: "https://toddles-api.phantominteractive.com.au/approve",
     type: "POST",
     data: JSON.stringify(data),
     headers: {
@@ -465,7 +465,7 @@ function approveDoc() {
 
 function getTemplates() {
   $.ajax({
-    url: `https://api.olyvhealth.com/templates`,
+    url: `https://toddles-api.phantominteractive.com.au/templates`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -494,7 +494,7 @@ function getTemplates() {
 
 function getReportDrafts() {
   $.ajax({
-    url: `https://api.olyvhealth.com/drafts`,
+    url: `https://toddles-api.phantominteractive.com.au/drafts`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -581,7 +581,7 @@ function sendCreateReportRequest() {
 
   $(".client-report-load-icon").css("display", "");
   $.ajax({
-    url: "https://api.olyvhealth.com/report",
+    url: "https://toddles-api.phantominteractive.com.au/report",
     type: "POST",
     data: JSON.stringify(requestData),
     headers: {
@@ -626,7 +626,7 @@ function goReportResultPage(result, title, draftID) {
     $(".client-report-load-icon").fadeOut();
   } else {
     $.ajax({
-      url: `https://api.olyvhealth.com/draft?id=${draftID}`,
+      url: `https://toddles-api.phantominteractive.com.au/draft?id=${draftID}`,
       type: "GET",
       headers: {
         Authorization: getAuthHeader(),

@@ -19,7 +19,7 @@ $(function () {
       }
       var Authorization = user_name + " " + token;
       $.ajax({
-        url: "https://api.olyvhealth.com/feedback",
+        url: "https://toddles-api.phantominteractive.com.au/feedback",
         type: "POST",
         data: data,
         headers: {
@@ -45,11 +45,10 @@ $(function () {
   });
 });
 
-
-$("#guide").click(function() {
-    createVideoModal("feedback");
-    $("#guideModal").modal({
-        backdrop: 'static',
-        keyboard: true
-    });
-})
+$("#guide").click(function () {
+  createVideoModal("feedback");
+  $("#guideModal").modal({
+    backdrop: "static",
+    keyboard: true,
+  });
+});

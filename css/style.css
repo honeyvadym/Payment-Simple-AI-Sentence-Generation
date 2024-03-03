@@ -582,6 +582,10 @@ TRANSITION EFFECTS - END
   color: var(--site-primary-secondary);
 }
 
+.nav-desktop {
+  flex: none;
+}
+
 .nav-desktop .div-fixed .label {
   font-size: 0.875rem;
   font-weight: 400 !important;
@@ -1790,6 +1794,7 @@ li.block-list-item:not(:last-child) {
 
 div.report-result-content {
   padding: 20px;
+  min-height: 128px;
 }
 
 div.report-result-section ul.dropdown-menu {
@@ -2359,3 +2364,45 @@ Profile PAGE - END
   padding: 5px 10px;
   width: 100%;
 }
+
+
+/* 
+  Workspace style start
+*/
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.options-container label {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.options-container select {
+  height: 30px;
+  outline: none;
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+.options-container option {
+  text-transform: capitalize;
+}
+
+.options-container label {
+  font-weight: bold;
+}
+
+.options-container select {
+  min-width: 0 !important;
+}
+/* 
+  Workspace style end
+*/

@@ -38,7 +38,7 @@ function getClients() {
     window.location.href = "./dashboard.html";
   }
   $.ajax({
-    url: "https://api.olyvhealth.com/clients",
+    url: "https://toddles-api.phantominteractive.com.au/clients",
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -109,7 +109,7 @@ var currentDraftId = null;
 var clickEvenKey = false;
 function getNotes() {
   $.ajax({
-    url: `https://api.olyvhealth.com/docs?client=${localStorage.getItem(
+    url: `https://toddles-api.phantominteractive.com.au/docs?client=${localStorage.getItem(
       "client_id"
     )}`,
     type: "GET",
@@ -150,7 +150,7 @@ function filterClients() {
 
 function getDrafts() {
   $.ajax({
-    url: `https://api.olyvhealth.com/drafts?client=${localStorage.getItem(
+    url: `https://toddles-api.phantominteractive.com.au/drafts?client=${localStorage.getItem(
       "client_id"
     )}`,
     type: "GET",
@@ -260,7 +260,7 @@ function showDraftList() {
 
 function getBlocks() {
   $.ajax({
-    url: `https://api.olyvhealth.com/blocks`,
+    url: `https://toddles-api.phantominteractive.com.au/blocks`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -285,7 +285,7 @@ function getPrompt(blockName, reportId) {
   return new Promise(function (resolve, reject) {
     if (blockName && reportId) {
       $.ajax({
-        url: `https://api.olyvhealth.com/prompt?query=${blockName}&id=${reportId}`,
+        url: `https://toddles-api.phantominteractive.com.au/prompt?query=${blockName}&id=${reportId}`,
         timeout: 60000,
         type: "GET",
         headers: {
@@ -317,7 +317,7 @@ function getCustomPrompt() {
   $("#myTextarea").addClass("noEdit").attr("contenteditable", false);
   $("#blockListButton img").show();
   $.ajax({
-    url: `https://api.olyvhealth.com/prompt?query=custom%7C${$(
+    url: `https://toddles-api.phantominteractive.com.au/prompt?query=custom%7C${$(
       "#custom_block_name"
     ).val()}&id=${currentDraftId}`,
     type: "GET",
@@ -400,7 +400,7 @@ function goReportResultPage(result, title, draftID) {
     $(".btn-save-report").data("report-id", draftID);
 
     $.ajax({
-      url: `https://api.olyvhealth.com/draft?id=${draftID}`,
+      url: `https://toddles-api.phantominteractive.com.au/draft?id=${draftID}`,
       type: "GET",
       headers: {
         Authorization: getAuthHeader(),
@@ -462,14 +462,13 @@ function goReportResultPage(result, title, draftID) {
   $(".report-result-section").removeClass("hidden");
 }
 
-
 function saveReport() {
   $("#blockListButton").hide();
   setTimeout(() => {
     $(".report-load-icon").css("display", "");
   }, 10);
   $.ajax({
-    url: `https://api.olyvhealth.com/save`,
+    url: `https://toddles-api.phantominteractive.com.au/save`,
     type: "POST",
     headers: {
       Authorization: getAuthHeader(),
@@ -501,7 +500,7 @@ function saveReport() {
       isReportEdited = false;
       $(".report-load-icon").fadeOut();
       setTimeout(() => {
-      	$("#blockListButton").show();
+        $("#blockListButton").show();
       }, 500);
       close_alert_after_5();
     },
@@ -529,7 +528,7 @@ function toogleArrowIcon(el) {
     $i.removeClass("fa-chevron-up").addClass("fa-chevron-down");
   }
 }
-async function exportHTML(type,filename = '') {
+async function exportHTML(type, filename = "") {
   var $el = $(".report-result-content").clone(true, false);
   // $el.find(".non-export").remove();
   $el.removeClass("shadow-box");
@@ -538,44 +537,49 @@ async function exportHTML(type,filename = '') {
   // var timeStamp = new Date(Number(localStorage.getItem('draft_time')) * 1000);
   // var date = timeStamp.getFullYear() + "-" + (timeStamp.getMonth() + 1) + "-" + timeStamp.getDate();
   var date = $("#page_subtitle").text();
-  var clientName = localStorage.getItem("client_name") ? localStorage.getItem("client_name").replace(' ','-') : 'no-name';
+  var clientName = localStorage.getItem("client_name")
+    ? localStorage.getItem("client_name").replace(" ", "-")
+    : "no-name";
   if (type == "doc") {
+    var preHtml =
+      "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    var html =
+      preHtml + "<div>" + $(".report-result-content").html() + "</div>";
+    +postHtml;
 
-var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-  var postHtml = "</body></html>";
-  var html = preHtml+"<div>" + $(".report-result-content").html() + "</div>";+postHtml;
+    var blob = new Blob(["\ufeff", html], {
+      type: "application/msword",
+    });
 
-  var blob = new Blob(['\ufeff', html], {
-      type: 'application/msword'
-  });
-  
-  // Specify link url
-  var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
-  
-  // Specify file name
-  filename = filename ? filename + ".doc" : 'report-export-' + clientName + '-' + date + ".doc";
-  
-  // Create download link element
-  var downloadLink = document.createElement("a");
+    // Specify link url
+    var url =
+      "data:application/vnd.ms-word;charset=utf-8," + encodeURIComponent(html);
 
-  document.body.appendChild(downloadLink);
-  
-  if(navigator.msSaveOrOpenBlob ){
+    // Specify file name
+    filename = filename
+      ? filename + ".doc"
+      : "report-export-" + clientName + "-" + date + ".doc";
+
+    // Create download link element
+    var downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if (navigator.msSaveOrOpenBlob) {
       navigator.msSaveOrOpenBlob(blob, filename);
-  }else{
+    } else {
       // Create a link to the file
       downloadLink.href = url;
-      
+
       // Setting the file name
       downloadLink.download = filename;
-      
+
       //triggering the function
       downloadLink.click();
-  }
-  
-  document.body.removeChild(downloadLink);
+    }
 
-
+    document.body.removeChild(downloadLink);
   }
 
   if (type === "pdf") {
@@ -621,7 +625,9 @@ var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='
         y += child.height / 4 + 10;
       }
     }
-    filename = filename ? filename + ".pdf" : 'report-export-' + clientName + '-' + date + ".pdf";
+    filename = filename
+      ? filename + ".pdf"
+      : "report-export-" + clientName + "-" + date + ".pdf";
 
     pdf_doc.save(filename);
   }
@@ -736,7 +742,7 @@ function sendCreateReportRequest() {
 
   $(".report-load-icon").css("display", "");
   $.ajax({
-    url: `https://api.olyvhealth.com/report`,
+    url: `https://toddles-api.phantominteractive.com.au/report`,
     type: "POST",
     data: JSON.stringify(requestData),
     headers: {
@@ -773,7 +779,7 @@ function sendCreateReportRequest() {
 
 function getTemplates() {
   $.ajax({
-    url: `https://api.olyvhealth.com/templates`,
+    url: `https://toddles-api.phantominteractive.com.au/templates`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -822,7 +828,7 @@ function deleteReport() {
   $(".report-load-icon").css("display", "");
   var reportId = $("#delete_report_id").val();
   $.ajax({
-    url: `https://api.olyvhealth.com/delete`,
+    url: `https://toddles-api.phantominteractive.com.au/delete`,
     type: "POST",
     data: JSON.stringify({
       id: reportId,
@@ -1146,12 +1152,10 @@ $(function () {
   });
 });
 
-
-
-$("#guide").click(function() {
-    createVideoModal("report");
-    $("#guideModal").modal({
-        backdrop: 'static',
-        keyboard: true
-    });
-})
+$("#guide").click(function () {
+  createVideoModal("report");
+  $("#guideModal").modal({
+    backdrop: "static",
+    keyboard: true,
+  });
+});

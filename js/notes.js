@@ -21,7 +21,7 @@ function getClients() {
     window.location.href = "./dashboard.html";
   }
   $.ajax({
-    url: "https://api.olyvhealth.com/clients",
+    url: "https://toddles-api.phantominteractive.com.au/clients",
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -108,7 +108,7 @@ var allDocs = null;
 
 function getNotes() {
   $.ajax({
-    url: `https://api.olyvhealth.com/docs?client=${localStorage.getItem(
+    url: `https://toddles-api.phantominteractive.com.au/docs?client=${localStorage.getItem(
       "client_id"
     )}`,
     type: "GET",
@@ -204,7 +204,7 @@ function gotoDocDetail(id, inactive) {
   var isApprovedNote =
     allDocs.find((item) => item.id === id).status === DOC_STATUS_TYPE.APPROVED;
   $.ajax({
-    url: `https://api.olyvhealth.com/document?id=${id}`,
+    url: `https://toddles-api.phantominteractive.com.au/document?id=${id}`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -239,7 +239,9 @@ function gotoDocDetail(id, inactive) {
 					`);
         });
 
-        $(".note-result-transcript").html(translateDOM(response.document.transcript));
+        $(".note-result-transcript").html(
+          translateDOM(response.document.transcript)
+        );
 
         // $(".docs-detail-issue").val(response.document.box.issues);
         // textareaAutoResize($(".docs-detail-issue")[0]);
@@ -348,7 +350,7 @@ function saveDoc() {
   };
 
   $.ajax({
-    url: "https://api.olyvhealth.com/notes_save",
+    url: "https://toddles-api.phantominteractive.com.au/notes_save",
     type: "POST",
     data: JSON.stringify(data),
     headers: {
@@ -399,7 +401,7 @@ function approveDoc() {
   };
 
   $.ajax({
-    url: "https://api.olyvhealth.com/notes_approve",
+    url: "https://toddles-api.phantominteractive.com.au/notes_approve",
     type: "POST",
     data: JSON.stringify(data),
     headers: {
@@ -477,7 +479,9 @@ async function exportHTML(type, filename = "") {
   // var timeStamp = new Date(Number(localStorage.getItem('note_time')) * 1000);
   // var date = timeStamp.getFullYear() + "-" + (timeStamp.getMonth() + 1) + "-" + timeStamp.getDate();
   var date = $("#page_subtitle").text();
-  var clientName = localStorage.getItem("client_name") ? localStorage.getItem("client_name").replace(' ','-') : 'no-name';
+  var clientName = localStorage.getItem("client_name")
+    ? localStorage.getItem("client_name").replace(" ", "-")
+    : "no-name";
   if (type == "doc") {
     var preHtml =
       "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
@@ -494,7 +498,9 @@ async function exportHTML(type, filename = "") {
       "data:application/vnd.ms-word;charset=utf-8," + encodeURIComponent(html);
 
     // Specify file name
-    filename = filename ? filename + ".doc" : 'session-note-' + clientName + '-' + date + ".doc";
+    filename = filename
+      ? filename + ".doc"
+      : "session-note-" + clientName + "-" + date + ".doc";
 
     // Create download link element
     var downloadLink = document.createElement("a");
@@ -560,7 +566,9 @@ async function exportHTML(type, filename = "") {
         y += child.height / 4 + 10;
       }
     }
-    filename = filename ? filename + ".pdf" : 'session-note-' + clientName + '-' + date + ".pdf";
+    filename = filename
+      ? filename + ".pdf"
+      : "session-note-" + clientName + "-" + date + ".pdf";
     pdf_doc.save(filename);
   }
   $el.remove();
@@ -598,12 +606,10 @@ async function getImageBase64(url, maxWidth, maxHeight) {
   });
 }
 
-
-
-$("#guide").click(function() {
-    createVideoModal("notes");
-    $("#guideModal").modal({
-        backdrop: 'static',
-        keyboard: true
-    });
-})
+$("#guide").click(function () {
+  createVideoModal("notes");
+  $("#guideModal").modal({
+    backdrop: "static",
+    keyboard: true,
+  });
+});

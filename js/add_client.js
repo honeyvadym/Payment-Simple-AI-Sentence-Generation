@@ -22,7 +22,7 @@ $(function () {
       }
       var Authorization = user_name + " " + token;
       $.ajax({
-        url: "https://api.olyvhealth.com/add",
+        url: "https://toddles-api.phantominteractive.com.au/add",
         type: "POST",
         data: data,
         headers: {
