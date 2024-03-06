@@ -81,19 +81,3 @@ function startTimerFunction(index) {
   }, 40);
 }
 
-// function login(){
-//     const xhr = new XMLHttpRequest();
-//     xhr.open("POST", "https://toddles-api.phantominteractive.com.au/login");
-//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//     xhr.withCredentials = false;
-//     xhr.onreadystatechange = () => {
-//         // Call a function when the state changes.
-//         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-//           // Request finished. Do processing here.
-//           window.location.href="./login_success.html";
-//         }else{
-//             console.log(xhr);
-//         }
-//     };
-//     xhr.send("username=tester1@palia.trade&password=123456");
-// }

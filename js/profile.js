@@ -18,7 +18,7 @@ $(function () {
       }
       var Authorization = user_name + " " + token;
       $.ajax({
-        url: "https://toddles-api.phantominteractive.com.au/feedback",
+        url: "https://api.toddles.cloud/feedback",
         type: "POST",
         data: data,
         headers: {
@@ -47,7 +47,7 @@ $(function () {
 
 function getProfile() {
   $.ajax({
-    url: "https://toddles-api.phantominteractive.com.au/profile",
+    url: "https://api.toddles.cloud/profile",
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -67,18 +67,7 @@ function getProfile() {
         $("#first_name").val(response.first_name);
         $("#last_name").val(response.last_name);
         $("#email").val(response.email);
-        if (response.signature != undefined) {
-          $("#img_input_signature").attr(
-            "src",
-            "https://olyvhealth.com/p/" + response.signature
-          );
-        }
-        if (response.letter_head != undefined) {
-          $("#img_input_letter_head").attr(
-            "src",
-            "https://olyvhealth.com/p/" + response.letter_head
-          );
-        }
+
       } else {
         $("#msg").html(response.error);
         $("#alert").removeClass("hidden").addClass("show");
@@ -179,58 +168,10 @@ $(document).ready(function () {
   });
 });
 
-function uploadRecording(type, canvas) {
-  $.ajax({
-    url: `https://toddles-api.phantominteractive.com.au/upload?type=${type}`,
-    type: "GET",
-    headers: {
-      Authorization: getAuthHeader(),
-    },
-    success: function (response) {
-      if (response.url !== undefined) {
-        canvas.toBlob(
-          function (blob) {
-            let file = new File([blob], Date.now() + ".png", {
-              type: "image/png",
-            });
-            console.log("********", file);
-
-            $.ajax({
-              url: response.url,
-              type: "PUT",
-              data: file,
-              processData: false,
-              success: function (response) {
-                $("input:file").val("");
-                $(".se-pre-con").fadeOut();
-
-                $("#alert_img_success div.alert").css("display", "block");
-                $("#alert_img_success").removeClass("hidden").addClass("show");
-              },
-              error: function (jqXHR, exception) {
-                redirectAjaxError(jqXHR);
-              },
-            });
-          },
-          "image/png",
-          1
-        );
-      } else {
-        // localStorage.clear();
-        // localStorage.setItem("error", "Try again");
-        // window.location.href="./login.html";
-      }
-    },
-    error: function (jqXHR, exception) {
-      redirectAjaxError(jqXHR);
-    },
-  });
-}
-
 function setupMFA() {
   $(".se-pre-con").fadeIn(300);
   $.ajax({
-    url: `https://toddles-api.phantominteractive.com.au/setup_mfa`,
+    url: `https://api.toddles.cloud/setup_mfa`,
     type: "GET",
     headers: {
       Authorization: getAuthHeader(),
@@ -270,7 +211,7 @@ function validateMFA() {
   data.mfa_code = $("#mfa_num").val();
   data = JSON.stringify(data);
   $.ajax({
-    url: `https://toddles-api.phantominteractive.com.au/validate_mfa`,
+    url: `https://api.toddles.cloud/validate_mfa`,
     type: "POST",
     data: data,
     headers: {

@@ -12,7 +12,7 @@ $(function () {
       data = JSON.stringify(data);
 
       $.ajax({
-        url: "https://toddles-api.phantominteractive.com.au/login",
+        url: "https://api.toddles.cloud/login",
         type: "POST",
         data: data,
         success: function (response) {
@@ -66,7 +66,7 @@ function mfaLogin() {
   data = JSON.stringify(data);
 
   $.ajax({
-    url: "https://toddles-api.phantominteractive.com.au/login",
+    url: "https://api.toddles.cloud/login",
     type: "POST",
     data: data,
     success: function (response) {

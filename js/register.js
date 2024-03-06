@@ -4,7 +4,6 @@ $(function () {
   $("#formRegister").validate({
     rules: {
       username: "required",
-      reg_number: "required",
       terms: "required",
       password: {
         required: true,
@@ -17,7 +16,6 @@ $(function () {
     },
     messages: {
       name: "Please enter your registered work email",
-      reg_number: "Please provide your AHPRA registration number",
       terms: "Please read and accept our terms and conditions",
       password: {
         required: "Please enter your password",
@@ -38,7 +36,7 @@ $(function () {
       data = JSON.stringify(data);
 
       $.ajax({
-        url: "https://toddles-api.phantominteractive.com.au/register",
+        url: "https://api.toddles.cloud/register",
         type: "POST",
         data: data,
         success: function (response) {
@@ -83,7 +81,7 @@ function fakeLogin() {
   };
   data = JSON.stringify(data);
   $.ajax({
-    url: "https://toddles-api.phantominteractive.com.au/login",
+    url: "https://api.toddles.cloud/login",
     type: "POST",
     data: data,
     success: function (response) {

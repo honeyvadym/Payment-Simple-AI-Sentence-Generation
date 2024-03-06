@@ -19,7 +19,7 @@ $(function () {
       }
       var Authorization = user_name + " " + token;
       $.ajax({
-        url: "https://toddles-api.phantominteractive.com.au/feedback",
+        url: "https://api.toddles.cloud/feedback",
         type: "POST",
         data: data,
         headers: {
