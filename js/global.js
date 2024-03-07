@@ -140,6 +140,13 @@ function getAuthHeader() {
 	return user_name + " "+token;
 }
 
+function getNumberFormat(str){
+    str = str.split(",").join("");
+    if(isNaN(str)) return "";
+    return new Intl.NumberFormat('en').format(str);
+}
+
+
 $(document).ready(function() {
 	$(".alert button.close").on("click", function (e) {
 		$(this).parent().fadeOut();

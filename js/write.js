@@ -343,7 +343,7 @@ function makeDrop($item, custom = false) {
           if (custom) {
             $(e.target).removeClass("flash-cursor");
             newWord =
-              '<span contenteditable="false" class="custom_block"><textarea placeholder="Prompt Olyv to extract any information you require, for example: Summarise relevant information of the treatment for the client in 30 words" rows="3" id="custom_block_name" ></textarea><button class="btn btn-info" onclick="getCustomPrompt()" id="get_prompt"><img style="display: none;" class=\'docs-detail-list-img\' src=\'./images/spinner.svg\'>Go!</button></span>';
+              '<span contenteditable="false" class="custom_block"><textarea placeholder="Prompt Toddles to extract any information you require, for example: Summarise relevant information of the treatment for the client in 30 words" rows="3" id="custom_block_name" ></textarea><button class="btn btn-info" onclick="getCustomPrompt()" id="get_prompt"><img style="display: none;" class=\'docs-detail-list-img\' src=\'./images/spinner.svg\'>Go!</button></span>';
             $(e.target).before(
               $("<span>", {
                 class: "new word",
