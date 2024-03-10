@@ -1,8 +1,8 @@
 :root {
-  --site-primary: #005792;
-  --site-primary-secondary: #5B66C6;
+  --site-primary: #47bcf3;
+  --site-primary-secondary: RGB(0, 177, 162);
   --site-info: RGB(0, 177, 162); /* info */
-  --site-secondary-green: #4CAF50;
+  --site-secondary-green: #4caf75;
   --site-secondary-red: #ff5825;
   --site-background: #FAFAFAFF;
   --site-background-secondary: #aec596;

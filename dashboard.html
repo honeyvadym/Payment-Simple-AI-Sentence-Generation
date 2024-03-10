@@ -10,45 +10,42 @@
         <link href="./css/dropzone.css" rel="stylesheet">
         <link href="./css/theme.css" rel="stylesheet">
         <link href="./css/dashboard.css" rel="stylesheet">
+        <link href="./css/style.css" rel="stylesheet" />
     </head>
     <body>
         <div class="div-background mobile hidden"></div>
-        <nav class="side-menu-bar">
+        <nav class="nav-desktop desktop">
             <div class="div-fixed">
-                <a class="py-2 d-block text-center" href="/">
-                    <img src="./images/logo.png" class="log-img"/>
+              <a class="py-2 left-menu" href="/">
+                <img src="./images/logo.png" class="log-img" />
+              </a>
+              <ul class="mt-80">
+                <li class="nav-mb-2">
+                  <a class="py-2 d-md-inline-block active" href="./dashboard.html">
+                    <i class="fa fa-fw fa-user-group mr-2"></i> Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a class="py-2 d-md-inline-block" href="./write.html">
+                    <i class="fa fa-fw fa-book mr-2"></i> Write
+                  </a>
+                </li>
+                <li>
+                  <a class="py-2 d-md-inline-block" href="./review.html">
+                    <i class="fa fa-fw fa-book mr-2"></i> Review
+                  </a>
+                </li>
+                <li>
+                  <a class="py-2 d-md-inline-block" href="./feedback.html">
+                    <i class="fa fa-fw fa-comment mr-2"></i> Feedback
+                  </a>
+                </li>
+              </ul>
+              <div class="user-menu">
+                <a class="py-2 d-inline-block" href="#" onclick="logout()">
+                  <i class="fa fa-fw fa-right-from-bracket mr-2"></i> Log out
                 </a>
-                <ul>
-                    <li class="active">
-                        <a class="d-block" href="./dashboard.html">
-                            <i class="fa fa-solid fa-chart-simple mr-2"></i> 
-                            <span>Dashboard</span>
-                        </a>
-                    </li>   
-                    <li>
-                        <a class="d-block" href="./write.html">
-                            <i class="fa fa-solid fa-folder mr-2"></i>
-                            <span>Write</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="d-block" href="./review.html">
-                            <i class="fa fa-solid fa-search mr-2"></i>
-                            <span>Review</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="d-block" href="./feedback.html">
-                            <i class="fa fa-solid fa-comment mr-2"></i>
-                            <span>Feedback</span>
-                        </a>
-                    </li>
-                </ul>  
-                <div class="user-menu">
-                    <a class="d-block" href="#" id="logout_btn">
-                        <i class="fa fa-fw fa-right-from-bracket mr-2"></i> Log out
-                    </a>
-                </div>
+              </div>
             </div>
         </nav>
 

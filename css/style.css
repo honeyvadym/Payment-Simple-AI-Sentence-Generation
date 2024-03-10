@@ -623,7 +623,7 @@ nav.mobile {
 
 nav.desktop a,
 nav.mobile a {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(26, 99, 12, 0.651);
   font-size: 16px;
   width: 100%;
 }
@@ -634,7 +634,7 @@ nav.desktop a.d-md-inline-block {
 
 nav.desktop a.active,
 nav.mobile a.active {
-  color: #fff;
+  color: rgb(7, 85, 33);
 }
 
 nav.desktop ul,
@@ -684,8 +684,9 @@ nav.desktop ul:not(.dropdown-menu) li:hover a:not(a.active) {
 }
 
 .user-menu a:hover {
-  background-color: #4c2a80;
+  background-color: var(--site-primary);
   cursor: pointer;
+  color: white;
 }
 
 /********************************
