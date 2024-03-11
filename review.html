@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <link rel="icon" href="favicon.ico" />
+    <title>
+      Australian Early Education Toolbox | Toddles
+    </title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="page-content-wrapper">
+      <div class="div-background mobile hidden"></div>
+      <nav class="nav-desktop desktop">
+        <div class="div-fixed">
+          <a class="py-2 left-menu" href="/">
+            <img src="./images/logo.png" class="log-img" />
+          </a>
+          <ul class="mt-80">
+            <li class="nav-mb-2">
+              <a class="py-2 d-md-inline-block" href="./dashboard.html">
+                <i class="fa fa-fw fa-user-group mr-2"></i> Dashboard
+              </a>
+            </li>
+            <li>
+              <a class="py-2 d-md-inline-block" href="./write.html">
+                <i class="fa fa-fw fa-book mr-2"></i> Write
+              </a>
+            </li>
+            <li>
+              <a class="py-2 d-md-inline-block active" href="./review.html">
+                <i class="fa fa-fw fa-book mr-2"></i> Review
+              </a>
+            </li>
+            <li>
+              <a class="py-2 d-md-inline-block" href="./feedback.html">
+                <i class="fa fa-fw fa-comment mr-2"></i> Feedback
+              </a>
+            </li>
+          </ul>
+          <div class="user-menu">
+            <a class="py-2 d-inline-block" href="#" onclick="logout()">
+              <i class="fa fa-fw fa-right-from-bracket mr-2"></i> Log out
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="page-main-section">
+        <nav class="site-header sticky-top ease-out">
+          <div class="left-menu-wrapper">
+            <i class="fa fa-fw fa-user-group mr-2"></i>Write an observation
+          </div>
+          <div class="right-menu-wrapper">
+            <div class="nav-dropdown mobile">
+              <button class="btn btn-primary" type="button" id="btn_mobile_nav">
+                <i class="fa fa-fw fa-list"></i>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <div class="page-wrapper">
+          <div class="page-container-wrapper">
+            <div class="se-pre-con"></div>
+            <div class="page-title">
+              <div class="page-heading">
+                <h1>Write</h1>
+                <p>
+                  Assist in writing an observation
+                </p>
+              </div>
+              <div class="page-action">
+              </div>
+            </div>
+
+            <div class="table-responsive mt-4 dashboard-table">
+              <div class="alert-backdrop fade hidden" id="alert_server_error">
+                <div
+                  class="alert alert-danger alert-dismissible mb-4"
+                  role="alert"
+                >
+                  <span id="msg_server_error">Error! Something went wrong</span>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    onclick="closeAlertAndRemoveBackdrop(this)"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              <div class="alert-backdrop fade hidden" id="alert_drafts_error">
+                <div
+                  class="alert alert-danger alert-dismissible mb-4"
+                  role="alert"
+                >
+                  <span id="msg_drafts_error">Error!</span>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    onclick="closeAlertAndRemoveBackdrop(this)"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              <div class="options-container gap-2" id="options-box">
+                
+              </div>
+              <h4 class="mt-3 mb-12">Content</h4>
+              <div
+                class="form-control report-result-content shadow-box" style="height: 132px;"
+                id="myTextarea"
+                contenteditable="true"
+              ></div>
+              <div class="d-flex justify-center mt-3" id="process-btn-box">
+                <button
+                  class="btn btn-danger btn-reports non-export"
+                  onclick="process()"
+                >
+                  Process
+                </button>
+              </div>
+              <div
+              id="export-btn-box"
+              class="d-flex justify-center align-center gap-4 mt-4 non-export hidden"
+              >
+              <button
+              onclick="reset()"
+              class="btn btn-danger btn-reports non-export"
+            >
+              Reset
+            </button>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-primary btn-reports dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown"
+                  >
+                    Export <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li onclick="exportHTML('doc')">DOC</li>
+                    <li onclick="exportHTML('pdf')">PDF</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div type="button" id="guide" class="btn btn-info">
+            <i class="fa fa-fw fa-info"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
+    <script src="./js/global.js"></script>
+    <script src="./js/review.js"></script>
+  </body>
+</html>
