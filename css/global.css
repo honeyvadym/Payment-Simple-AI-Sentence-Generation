@@ -720,7 +720,7 @@ div.page-content-wrapper {
 
 nav.desktop {
   width: 260px;
-  background: var(--site-primary-secondary);
+  background: #5060c0;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0;
   padding: 40px 20px 0px 20px;
 }

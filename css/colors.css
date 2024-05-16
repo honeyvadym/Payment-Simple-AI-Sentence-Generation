@@ -1,7 +1,7 @@
 :root {
-  --site-primary: #47bcf3;
-  --site-primary-secondary: RGB(0, 177, 162);
-  --site-info: RGB(0, 177, 162); /* info */
+  --site-primary: #005690;
+  --site-primary-secondary: RGB(90, 190, 190);
+  --site-info: RGB(0, 170, 160); /* info */
   --site-secondary-green: #4caf75;
   --site-secondary-red: #ff5825;
   --site-background: #FAFAFAFF;
