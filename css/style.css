@@ -2409,6 +2409,13 @@ Profile PAGE - END
 .options-container select {
   min-width: 0 !important;
 }
+#check-box-name {
+  margin-left: 10px;
+  margin-right: 4px;
+}
+#check-boxes {
+  width: 260px;
+}
 /* 
   Workspace style end
 */

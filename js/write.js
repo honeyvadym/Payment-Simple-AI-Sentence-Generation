@@ -36,8 +36,10 @@ function getOptions() {
     success: function (response) {
       if (response.error == undefined) {
         $(".se-pre-con").fadeOut("slow");
-        let html = "";
-        const { options } = response;
+        let html = "",
+          checkBoxHtml = "<div >";
+        let { options, boxes } = response;
+
         for (let i = 0; i < options.length; i++) {
           const option = options[i];
           html += `<label htmlFor="${option.name}">${option.name}:</label>
@@ -49,7 +51,17 @@ function getOptions() {
           }
           html += "</select>";
         }
+
+        for (let i = 0; i < boxes.length; i++) {
+          const box = boxes[i];
+          checkBoxHtml += `<input type="checkbox" id="check-box-name" name="vehicle1" value=${box}>${box}</input>`;
+          if ((i + 1) % 3 == 0 && i != 0) {
+            checkBoxHtml = checkBoxHtml + "</div><div>";
+          }
+        }
+        checkBoxHtml = checkBoxHtml + "</div>";
         $("#options-box").html(html);
+        $("#check-boxes").html(checkBoxHtml);
       } else {
         console.log("getOptions", response);
         // localStorage.clear();
@@ -92,11 +104,23 @@ function getBlocks() {
     },
   });
 }
-
+var a = {
+  options: [
+    { name: "detail", value: "medium" },
+    { name: "style", value: "formal" },
+  ],
+  boxes: ["principle", "learning"],
+  input_query: "rrr",
+};
 function process() {
   const selectedOptions = $("#options-box select")
     .map(function () {
       return { name: $(this).attr("id"), value: $(this).val() };
+    })
+    .get();
+  const checkboxOptions = $("#check-boxes input:checked")
+    .map(function () {
+      return $(this).val();
     })
     .get();
   const inputQuery = $("#myTextarea").text().trim();
@@ -107,14 +131,17 @@ function process() {
       type: "POST",
       data: JSON.stringify({
         options: selectedOptions,
+        boxes: checkboxOptions,
         input_query: inputQuery,
       }),
       headers: {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
+        console.log("response", response);
         if (response.success) {
           $("#options-box").addClass("hidden");
+          $("#check-boxes").addClass("hidden");
           $("#process-btn-box").addClass("hidden");
           $("#export-btn-box").removeClass("hidden");
           $("#myTextarea").html(translateDOM(response.response));
@@ -132,6 +159,26 @@ function process() {
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);
+        console.log("jqXHR", jqXHR);
+        console.log("exception", exception);
+        let msgTxt = "";
+        if (jqXHR.status == 402) {
+          msgTxt = "please top up credits!";
+          $("#msg_drafts_error").html(msgTxt);
+          msgTxt = "";
+        } else {
+          $("#msg_drafts_error").html(msgTxt);
+        }
+
+        $("#alert_drafts_error")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        $("#alert_drafts_error .alert")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        close_alert_after_5();
       },
     });
   } else {
@@ -148,6 +195,7 @@ function process() {
 function reset() {
   $(".se-pre-con").fadeIn();
   $("#options-box").removeClass("hidden");
+  $("#check-boxes").removeClass("hidden");
   $("#process-btn-box").removeClass("hidden");
   $("#export-btn-box").addClass("hidden");
   $("#myTextarea").html("");
@@ -185,7 +233,6 @@ function genHtml(options) {
   $("#table tbody").html(html);
 }
 
-
 function getName(str) {
   var units = str.split(" ");
   if (units.length == 2) {
@@ -200,7 +247,6 @@ function getName(str) {
     };
   }
 }
-
 
 $(document).ready(function () {
   $("table tbody").on(
