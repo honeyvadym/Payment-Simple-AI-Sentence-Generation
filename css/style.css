@@ -600,7 +600,8 @@ nav div.client-dropdown button {
 
 nav.desktop {
   width: 300px;
-  background: var(--site-primary-secondary);
+  color: white;
+  background-color: #12151b;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0;
   padding: 30px 35px 0px 35px;
   position: relative;
@@ -623,7 +624,7 @@ nav.mobile {
 
 nav.desktop a,
 nav.mobile a {
-  color: rgba(26, 99, 12, 0.651);
+  color: rgba(255, 255, 255);
   font-size: 16px;
   width: 100%;
 }
@@ -634,7 +635,7 @@ nav.desktop a.d-md-inline-block {
 
 nav.desktop a.active,
 nav.mobile a.active {
-  color: rgb(7, 85, 33);
+  color: rgb(255, 255, 255);
 }
 
 nav.desktop ul,
@@ -676,6 +677,8 @@ nav.desktop ul:not(.dropdown-menu) li:hover a:not(a.active) {
   flex-grow: 1;
   display: flex;
   align-items: end;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .user-menu a {
@@ -2230,7 +2233,8 @@ Profile PAGE - START
   width: 500px;
 }
 
-#img_input_signature, #img_input_letter_head {
+#img_input_signature,
+#img_input_letter_head {
   width: auto;
   max-width: 100%;
 }
@@ -2345,10 +2349,12 @@ Profile PAGE - END
 }
 
 @keyframes shake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
-  25%, 75% {
+  25%,
+  75% {
     transform: translateX(-3px);
   }
   50% {
@@ -2365,7 +2371,6 @@ Profile PAGE - END
   padding: 5px 10px;
   width: 100%;
 }
-
 
 /* 
   Workspace style start

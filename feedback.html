@@ -8,9 +8,7 @@
     />
     <meta name="description" content="" />
     <link rel="icon" href="favicon.ico" />
-    <title>
-      Australian Early Education Toolbox | Toddles
-    </title>
+    <title>Australian Early Education Toolbox | Toddles</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       rel="stylesheet"
@@ -33,6 +31,11 @@
               </a>
             </li>
             <li>
+              <a class="py-2 d-md-inline-block">
+                <i class="fa fa-fw fa-eye mr-2"></i> Observations
+              </a>
+            </li>
+            <li>
               <a class="py-2 d-md-inline-block" href="./write.html">
                 <i class="fa fa-fw fa-book mr-2"></i> Write
               </a>
@@ -43,12 +46,15 @@
               </a>
             </li>
             <li>
-              <a class="py-2 d-md-inline-block active" href="#">
+              <a class="py-2 d-md-inline-block active" href="./feedback.html">
                 <i class="fa fa-fw fa-comment mr-2"></i> Feedback
               </a>
             </li>
           </ul>
           <div class="user-menu">
+            <a class="d-block" href="./profile.html" id="view_account_btn">
+              <i class="fa fa-solid fa-search mr-2 mr-2"></i> View Account
+            </a>
             <a class="py-2 d-inline-block" href="#" onclick="logout()">
               <i class="fa fa-fw fa-right-from-bracket mr-2"></i> Log out
             </a>
@@ -75,7 +81,10 @@
             <div class="page-title">
               <div class="page-heading">
                 <h1>Feedback</h1>
-                <p>Please let us know if you faced any issues or have any suggestions</p>
+                <p>
+                  Please let us know if you faced any issues or have any
+                  suggestions
+                </p>
               </div>
             </div>
             <div class="mt-4 form-wrapper">
@@ -150,15 +159,32 @@
             </div>
           </div>
         </div>
-          <div type="button" id="guide" class="btn btn-info">
-            <i class="fa fa-fw fa-info"></i>
-          </div>
+        <div type="button" id="guide" class="btn btn-info">
+          <i class="fa fa-fw fa-info"></i>
+        </div>
         <div class="page-wrapper">
-        <!-- Calendly badget widget begin -->
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <script type="text/javascript"> window.onload = function() { Calendly.initBadgeWidget({ url:'https://calendly.com/lanajaff/30min',text:'Schedule a chat', color:'#5B66C6',textColor:'#FFFFFF',branding:undefined });}</script>
-        <!-- Calendly badget widget end -->
+          <!-- Calendly badget widget begin -->
+          <link
+            href="https://assets.calendly.com/assets/external/widget.css"
+            rel="stylesheet"
+          />
+          <script
+            src="https://assets.calendly.com/assets/external/widget.js"
+            type="text/javascript"
+            async
+          ></script>
+          <script type="text/javascript">
+            window.onload = function () {
+              Calendly.initBadgeWidget({
+                url: "https://calendly.com/lanajaff/30min",
+                text: "Schedule a chat",
+                color: "#5B66C6",
+                textColor: "#FFFFFF",
+                branding: undefined,
+              });
+            };
+          </script>
+          <!-- Calendly badget widget end -->
         </div>
       </div>
     </div>
@@ -169,6 +195,5 @@
     <script src="./js/jquery.validate.min.js"></script>
     <script src="./js/global.js"></script>
     <script src="./js/feedback.js"></script>
-
   </body>
 </html>

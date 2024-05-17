@@ -8,9 +8,7 @@
     />
     <meta name="description" content="" />
     <link rel="icon" href="favicon.ico" />
-    <title>
-      Australian Early Education Toolbox | Toddles
-    </title>
+    <title>Australian Early Education Toolbox | Toddles</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       rel="stylesheet"
@@ -33,6 +31,11 @@
               </a>
             </li>
             <li>
+              <a class="py-2 d-md-inline-block">
+                <i class="fa fa-fw fa-eye mr-2"></i> Observations
+              </a>
+            </li>
+            <li>
               <a class="py-2 d-md-inline-block" href="./write.html">
                 <i class="fa fa-fw fa-book mr-2"></i> Write
               </a>
@@ -49,6 +52,9 @@
             </li>
           </ul>
           <div class="user-menu">
+            <a class="d-block" href="./profile.html" id="view_account_btn">
+              <i class="fa fa-solid fa-search mr-2 mr-2"></i> View Account
+            </a>
             <a class="py-2 d-inline-block" href="#" onclick="logout()">
               <i class="fa fa-fw fa-right-from-bracket mr-2"></i> Log out
             </a>
@@ -75,12 +81,9 @@
             <div class="page-title">
               <div class="page-heading">
                 <h1>Write</h1>
-                <p>
-                  Assist in writing an observation
-                </p>
+                <p>Assist in writing an observation</p>
               </div>
-              <div class="page-action">
-              </div>
+              <div class="page-action"></div>
             </div>
 
             <div class="table-responsive mt-4 dashboard-table">
@@ -116,12 +119,11 @@
                   </button>
                 </div>
               </div>
-              <div class="options-container gap-2" id="options-box">
-                
-              </div>
+              <div class="options-container gap-2" id="options-box"></div>
               <h4 class="mt-3 mb-12">Content</h4>
               <div
-                class="form-control report-result-content shadow-box" style="height: 132px;"
+                class="form-control report-result-content shadow-box"
+                style="height: 132px"
                 id="myTextarea"
                 contenteditable="true"
               ></div>
@@ -134,15 +136,15 @@
                 </button>
               </div>
               <div
-              id="export-btn-box"
-              class="d-flex justify-center align-center gap-4 mt-4 non-export hidden"
+                id="export-btn-box"
+                class="d-flex justify-center align-center gap-4 mt-4 non-export hidden"
               >
-              <button
-              onclick="reset()"
-              class="btn btn-danger btn-reports non-export"
-            >
-              Reset
-            </button>
+                <button
+                  onclick="reset()"
+                  class="btn btn-danger btn-reports non-export"
+                >
+                  Reset
+                </button>
                 <div class="dropdown">
                   <button
                     class="btn btn-primary btn-reports dropdown-toggle"
@@ -165,7 +167,6 @@
         </div>
       </div>
     </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
