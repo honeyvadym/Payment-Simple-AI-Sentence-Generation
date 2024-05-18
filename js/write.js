@@ -157,27 +157,40 @@ function process() {
         }
       },
       error: function (jqXHR, exception) {
-        console.log("jqXHR", jqXHR);
-        console.log("jqXHR", exception);
+        // console.log("jqXHR", jqXHR);
+        // console.log("exception", exception);
         redirectAjaxError(jqXHR);
         let msgTxt = "";
-        if (jqXHR.status == 402) {
-          msgTxt = "please top up credits!";
-        } else {
-          msgTxt = "Error";
+        switch (jqXHR.status) {
+          case 400:
+            msgTxt = "Erorr:Bad Request.";
+            break;
+          case 401:
+            msgTxt = "Erorr:Token expired, please sign in again.";
+            break;
+          case 402:
+            msgTxt = "Insufficient credits, please refill!";
+            break;
+          case 404:
+            msgTxt = "Not Found:Server cannot find the requested URL";
+            break;
+          case 500:
+            msgTxt = "Error:Internal Server Error";
+            break;
+          default:
+            msgTxt = "Error";
         }
         $("#msg_drafts_error").html(msgTxt);
 
-        // $("#alert_drafts_error")
-        //   .removeClass("hidden")
-        //   .addClass("show")
-        //   .fadeIn();
-        // $("#alert_drafts_error .alert")
-        //   .removeClass("hidden")
-        //   .addClass("show")
-        //   .fadeIn();
-        // close_alert_after_5();
-        msgTxt = "";
+        $("#alert_drafts_error")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        $("#alert_drafts_error .alert")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        close_alert_after_5();
       },
     });
   } else {
