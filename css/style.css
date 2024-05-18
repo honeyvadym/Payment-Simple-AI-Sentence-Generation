@@ -2414,6 +2414,7 @@ Profile PAGE - END
   margin-right: 4px;
 }
 #check-boxes {
+  text-transform: capitalize;
   width: 260px;
 }
 /* 
