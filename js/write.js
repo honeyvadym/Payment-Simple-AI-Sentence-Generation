@@ -1,5 +1,5 @@
 $(function () {
-  setAvatar();
+  // setAvatar();
   initMsg();
   getOptions();
   getBlocks();

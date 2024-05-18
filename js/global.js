@@ -238,13 +238,13 @@ function closeAlertAndRemoveBackdrop(element) {
   $(element).closest(".alert-backdrop").removeClass("show").addClass("hidden");
 }
 
-function setAvatar() {
-  var user_name = localStorage.getItem("user_name");
-  if (user_name) {
-    $(".right-menu-wrapper").append(`
-            <div class="desktop">
-                <a class="pro-user" href="./profile.html"><i class="fa fa-fw fa-user"></i></a>
-            </div>
-        `);
-  }
-}
+// function setAvatar() {
+//   var user_name = localStorage.getItem("user_name");
+//   if (user_name) {
+//     $(".right-menu-wrapper").append(`
+//             <div class="desktop">
+//                 <a class="pro-user" href="./profile.html"><i class="fa fa-fw fa-user"></i></a>
+//             </div>
+//         `);
+//   }
+// }
