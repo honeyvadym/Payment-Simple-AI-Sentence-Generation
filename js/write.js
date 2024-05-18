@@ -138,7 +138,6 @@ function process() {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
-        console.log("response", response);
         if (response.success) {
           $("#options-box").addClass("hidden");
           $("#check-boxes").addClass("hidden");
@@ -158,27 +157,27 @@ function process() {
         }
       },
       error: function (jqXHR, exception) {
-        redirectAjaxError(jqXHR);
         console.log("jqXHR", jqXHR);
-        console.log("exception", exception);
+        console.log("jqXHR", exception);
+        redirectAjaxError(jqXHR);
         let msgTxt = "";
         if (jqXHR.status == 402) {
           msgTxt = "please top up credits!";
-          $("#msg_drafts_error").html(msgTxt);
-          msgTxt = "";
         } else {
-          $("#msg_drafts_error").html(msgTxt);
+          msgTxt = "Error";
         }
+        $("#msg_drafts_error").html(msgTxt);
 
-        $("#alert_drafts_error")
-          .removeClass("hidden")
-          .addClass("show")
-          .fadeIn();
-        $("#alert_drafts_error .alert")
-          .removeClass("hidden")
-          .addClass("show")
-          .fadeIn();
-        close_alert_after_5();
+        // $("#alert_drafts_error")
+        //   .removeClass("hidden")
+        //   .addClass("show")
+        //   .fadeIn();
+        // $("#alert_drafts_error .alert")
+        //   .removeClass("hidden")
+        //   .addClass("show")
+        //   .fadeIn();
+        // close_alert_after_5();
+        msgTxt = "";
       },
     });
   } else {
