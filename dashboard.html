@@ -30,12 +30,12 @@
                     <i class="fa fa-fw fa-eye mr-2"></i> Observations
                   </a>
                 </li>
-                <li>
+                <li class="ml-3">
                   <a class="py-2 d-md-inline-block" href="./write.html">
                     <i class="fa fa-fw fa-pencil mr-2"></i> Write
                   </a>
                 </li>
-                <li>
+                <li class="ml-3">
                   <a class="py-2 d-md-inline-block" href="./review.html">
                     <i class="fa fa-fw fa-book mr-2"></i> Review
                   </a>
@@ -48,7 +48,7 @@
               </ul>
               <div class="user-menu">
                 <a class="py-2 d-inline-block" href="./profile.html" id="view_account_btn">
-                    <i class="fa fa-solid fa-search mr-2 mr-2"></i> View Account
+                    <i class="fa fa-solid fa-search mr-2 mr-2"></i> Account
                 </a>
                 <a class="py-2 d-inline-block" href="#" onclick="logout()">
                   <i class="fa fa-fw fa-right-from-bracket mr-2"></i> Log out
@@ -75,8 +75,22 @@
                     <div class="se-pre-con"></div>
                     <div class="container mt-4">
                         <div class="container-fluid">
-
                             <div class="row mobile-gap-4">
+                                <div class="col-lg-4 col-md-12 cursor-pointer" onclick="window.location.href='./profile.html'">
+                                    <div class="card comp-card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <h6 class="m-b-25">My credits</h6>
+                                                    <h3 class="f-w-700 text-c-green" id="my_credit">1,563</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+
+                            <div class="row mobile-gap-4 mt-4">
                                 <div class="col-lg-4 col-md-12 cursor-pointer" onclick="window.location.href='./write.html'">
                                     <div class="card comp-card">
                                         <div class="card-body">
@@ -100,20 +114,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="card comp-card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col">
-                                                    <h6 class="m-b-25">My credits</h6>
-                                                    <h3 class="f-w-700 text-c-green" id="my_credit">1,563</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div> 
+                                </div>
+                            </div>
+
 
                     </div>  
                 </div>  
