@@ -54,7 +54,7 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<input type="checkbox" id="check-box-name" name="vehicle1" value=${box}>${box}</input>`;
+          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${box}>${box}</input>`;
           if ((i + 1) % 3 == 0 && i != 0) {
             checkBoxHtml = checkBoxHtml + "</div><div>";
           }
@@ -151,14 +151,9 @@ function process() {
           console.log("process", response);
         } else {
           console.log("process", response);
-          // localStorage.clear();
-          // localStorage.setItem("error", "Try again");
-          // window.location.href="./login.html";
         }
       },
       error: function (jqXHR, exception) {
-        // console.log("jqXHR", jqXHR);
-        // console.log("exception", exception);
         redirectAjaxError(jqXHR);
         let msgTxt = "";
         switch (jqXHR.status) {
@@ -179,6 +174,7 @@ function process() {
             break;
           default:
             msgTxt = "Error";
+            break;
         }
         $("#msg_drafts_error").html(msgTxt);
 
