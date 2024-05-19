@@ -124,7 +124,9 @@ function process() {
     })
     .get();
   const inputQuery = $("#myTextarea").text().trim();
-  if (selectedOptions && inputQuery) {
+
+  console.log("inputqert", inputQuery.length);
+  if (selectedOptions && inputQuery && inputQuery.length > 200) {
     $(".se-pre-con").fadeIn("slow");
     $.ajax({
       url: "https://api.toddles.cloud/process",
@@ -189,6 +191,16 @@ function process() {
         close_alert_after_5();
       },
     });
+  } else if (selectedOptions && inputQuery.length < 200) {
+    $("#msg_drafts_error").html(
+      "Please provide more details. Your content must be greater than 200 characters."
+    );
+    $("#alert_drafts_error").removeClass("hidden").addClass("show").fadeIn();
+    $("#alert_drafts_error .alert")
+      .removeClass("hidden")
+      .addClass("show")
+      .fadeIn();
+    close_alert_after_5();
   } else {
     $("#msg_drafts_error").html("Error! Please fill out all input tags.");
     $("#alert_drafts_error").removeClass("hidden").addClass("show").fadeIn();
