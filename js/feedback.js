@@ -1,6 +1,6 @@
 $(function () {
   $(".se-pre-con").fadeOut("slow");
-  setAvatar();
+  // setAvatar();
 
   $("#feedback-form").validate({
     submitHandler: function (form) {

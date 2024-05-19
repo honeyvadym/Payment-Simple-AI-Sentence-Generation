@@ -1,5 +1,5 @@
 $(function () {
-  setAvatar();
+  // setAvatar();
   initMsg();
   getOptions();
 });
@@ -69,7 +69,7 @@ function process() {
     })
     .get();
   const inputQuery = $("#myTextarea").text().trim();
-  if (selectedOptions && inputQuery) {
+  if (selectedOptions && inputQuery && inputQuery.length > 200) {
     $(".se-pre-con").fadeIn("slow");
     $.ajax({
       url: "https://api.toddles.cloud/revise",
@@ -94,15 +94,54 @@ function process() {
           console.log("process", response);
         } else {
           console.log("process", response);
-          // localStorage.clear();
-          // localStorage.setItem("error", "Try again");
-          // window.location.href="./login.html";
         }
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);
+        let msgTxt = "";
+        switch (jqXHR.status) {
+          case 400:
+            msgTxt = "Erorr:Bad Request.";
+            break;
+          case 401:
+            msgTxt = "Erorr:Token expired, please sign in again.";
+            break;
+          case 402:
+            msgTxt = "Insufficient credits, please refill!";
+            break;
+          case 404:
+            msgTxt = "Not Found:Server cannot find the requested URL";
+            break;
+          case 500:
+            msgTxt = "Error:Internal Server Error";
+            break;
+          default:
+            msgTxt = "Error";
+            break;
+        }
+        $("#msg_drafts_error").html(msgTxt);
+
+        $("#alert_drafts_error")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        $("#alert_drafts_error .alert")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        close_alert_after_5();
       },
     });
+  } else if (selectedOptions && inputQuery.length < 200) {
+    $("#msg_drafts_error").html(
+      "Please provide more details. Your content must be greater than 200 characters."
+    );
+    $("#alert_drafts_error").removeClass("hidden").addClass("show").fadeIn();
+    $("#alert_drafts_error .alert")
+      .removeClass("hidden")
+      .addClass("show")
+      .fadeIn();
+    close_alert_after_5();
   } else {
     $("#msg_drafts_error").html("Error! Please fill out all input tags.");
     $("#alert_drafts_error").removeClass("hidden").addClass("show").fadeIn();

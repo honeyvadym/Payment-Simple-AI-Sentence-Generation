@@ -2409,7 +2409,7 @@ Profile PAGE - END
 .options-container select {
   min-width: 0 !important;
 }
-#check-box-name {
+.check-box {
   margin-left: 10px;
   margin-right: 4px;
 }

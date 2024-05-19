@@ -1,5 +1,5 @@
 $(function () {
-  setAvatar();
+  // setAvatar();
   initMsg();
   getOptions();
   getBlocks();
@@ -54,7 +54,7 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<input type="checkbox" id="check-box-name" name="vehicle1" value=${box}>${box}</input>`;
+          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${box}>${box}</input>`;
           if ((i + 1) % 3 == 0 && i != 0) {
             checkBoxHtml = checkBoxHtml + "</div><div>";
           }
@@ -124,7 +124,9 @@ function process() {
     })
     .get();
   const inputQuery = $("#myTextarea").text().trim();
-  if (selectedOptions && inputQuery) {
+
+  console.log("inputqert", inputQuery.length);
+  if (selectedOptions && inputQuery && inputQuery.length > 200) {
     $(".se-pre-con").fadeIn("slow");
     $.ajax({
       url: "https://api.toddles.cloud/process",
@@ -151,14 +153,9 @@ function process() {
           console.log("process", response);
         } else {
           console.log("process", response);
-          // localStorage.clear();
-          // localStorage.setItem("error", "Try again");
-          // window.location.href="./login.html";
         }
       },
       error: function (jqXHR, exception) {
-        // console.log("jqXHR", jqXHR);
-        // console.log("exception", exception);
         redirectAjaxError(jqXHR);
         let msgTxt = "";
         switch (jqXHR.status) {
@@ -179,6 +176,7 @@ function process() {
             break;
           default:
             msgTxt = "Error";
+            break;
         }
         $("#msg_drafts_error").html(msgTxt);
 
@@ -193,6 +191,16 @@ function process() {
         close_alert_after_5();
       },
     });
+  } else if (selectedOptions && inputQuery.length < 200) {
+    $("#msg_drafts_error").html(
+      "Please provide more details. Your content must be greater than 200 characters."
+    );
+    $("#alert_drafts_error").removeClass("hidden").addClass("show").fadeIn();
+    $("#alert_drafts_error .alert")
+      .removeClass("hidden")
+      .addClass("show")
+      .fadeIn();
+    close_alert_after_5();
   } else {
     $("#msg_drafts_error").html("Error! Please fill out all input tags.");
     $("#alert_drafts_error").removeClass("hidden").addClass("show").fadeIn();
