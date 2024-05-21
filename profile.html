@@ -94,7 +94,7 @@
             <div class="page-title">
               <div class="page-heading">
                 <h1>Settings</h1>
-                <p>You can update your details here</p>
+                <p>You can update your details and purchase credits here</p>
               </div>
             </div>
             <div class="mt-4 form-wrapper">
@@ -196,6 +196,15 @@
 
                 </form>
               </div>
+              <div>
+                <script src="https://www.paypal.com/sdk/js?client-id=BAAfoadq2mmgKJZy7rfSOfy5DlfGPsQLaU8n3SiPugPyqdjFutpN3sMAqTm_CZq5qRV4XF6jn_9j-CusAE&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
+                <div id="paypal-container-SMDMCJWF3G85E"></div>
+                <script>
+                  paypal.HostedButtons({
+                    hostedButtonId: "SMDMCJWF3G85E",
+                  }).render("#paypal-container-SMDMCJWF3G85E")
+                </script>
+                </div>
             </div>
           </div>
         </div>
