@@ -24,6 +24,12 @@
       rel="stylesheet"
     />
     <link href="./css/style.css" rel="stylesheet" />
+      <script src="https://www.paypal.com/sdk/js?client-id=BAAfoadq2mmgKJZy7rfSOfy5DlfGPsQLaU8n3SiPugPyqdjFutpN3sMAqTm_CZq5qRV4XF6jn_9j-CusAE&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "SMDMCJWF3G85E",
+      }).render("#paypal-container-SMDMCJWF3G85E")
+    </script>
   </head>
   <body>
     <div class="page-content-wrapper">
@@ -196,14 +202,10 @@
 
                 </form>
               </div>
-              <div>
-                <script src="https://www.paypal.com/sdk/js?client-id=BAAfoadq2mmgKJZy7rfSOfy5DlfGPsQLaU8n3SiPugPyqdjFutpN3sMAqTm_CZq5qRV4XF6jn_9j-CusAE&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
-                <div id="paypal-container-SMDMCJWF3G85E"></div>
-                <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "SMDMCJWF3G85E",
-                  }).render("#paypal-container-SMDMCJWF3G85E")
-                </script>
+              <div >
+
+                <div id="paypal-container-SMDMCJWF3G85E" ></div>
+
                 </div>
             </div>
           </div>
