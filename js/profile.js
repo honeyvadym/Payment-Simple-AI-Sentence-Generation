@@ -253,3 +253,28 @@ function validateMFA() {
     },
   });
 }
+
+window.paypal.Buttons({
+  createOrder: function(data, actions) {
+      // Set up the transaction
+      return actions.order.create({
+          purchase_units: [{
+              amount: {
+                  value: '0.01' // Replace this value with the amount to be charged
+              }
+          }]
+      });
+  },
+  onApprove: function(data, actions) {
+      // Capture the funds from the transaction
+      return actions.order.capture().then(function(details) {
+          // Show a success message to your buyer
+          alert('Transaction completed by ' + details.payer.email_address);
+      });
+  },
+  onError: function(err) {
+      // Show an error message to your buyer
+      console.error('An error occurred during the transaction', err);
+      alert('An error occurred during the transaction. Please try again.');
+  }
+}).render('#paypal-button-container'); // Display payment button on your web page
