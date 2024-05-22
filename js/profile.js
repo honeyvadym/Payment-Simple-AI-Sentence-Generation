@@ -257,10 +257,11 @@ function validateMFA() {
 window.paypal.Buttons({
   createOrder: function(data, actions) {
       // Set up the transaction
+      let currentPrice = handlePrice();
       return actions.order.create({
           purchase_units: [{
               amount: {
-                  value: '0.01' // Replace this value with the amount to be charged
+                  value: currentPrice // Replace this value with the amount to be charged
               }
           }]
       });
@@ -278,3 +279,10 @@ window.paypal.Buttons({
       alert('An error occurred during the transaction. Please try again.');
   }
 }).render('#paypal-button-container'); // Display payment button on your web page
+
+function handlePrice() {
+  var selectElement = document.getElementById('priceSelected');
+  var selectedValue = selectElement.value;
+  console.log('You selected: ', selectedValue);
+  return selectedValue;
+}
