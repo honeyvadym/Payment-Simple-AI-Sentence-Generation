@@ -258,19 +258,20 @@ window.paypal.Buttons({
   createOrder: function(data, actions) {
       // Set up the transaction
       let currentPrice = handlePrice();
+      let customVariable = handleCustomVariable();
       return actions.order.create({
           purchase_units: [{
               amount: {
                   value: currentPrice // Replace this value with the amount to be charged
-              }
+              },
+              custom_id: customVariable,
           }]
       });
   },
   onApprove: function(data, actions) {
       // Capture the funds from the transaction
       return actions.order.capture().then(function(details) {
-          // Show a success message to your buyer
-          alert('Transaction completed by ' + details.payer.email_address);
+          console.log('Custom ID:', details.purchase_units[0].custom_id);
       });
   },
   onError: function(err) {
@@ -284,5 +285,12 @@ function handlePrice() {
   var selectElement = document.getElementById('priceSelected');
   var selectedValue = selectElement.value;
   console.log('You selected: ', selectedValue);
+  return selectedValue;
+}
+
+function handleCustomVariable() {
+  var selectElement = document.getElementById('email');
+  var selectedValue = selectElement.value;
+  console.log('You custom variable: ', selectedValue);
   return selectedValue;
 }
