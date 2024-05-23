@@ -1,5 +1,4 @@
 $(function () {
-  // $(".se-pre-con").fadeOut("slow");
   getProfile();
   $("#feedback-form").validate({
     submitHandler: function (form) {
@@ -43,7 +42,6 @@ $(function () {
     },
   });
 });
-//file upload about signature & letter
 
 function getProfile() {
   $.ajax({
@@ -98,33 +96,16 @@ $(document).ready(function () {
     var files = e.target.files;
     editingEl = $(this).attr("id");
     var done = function (url) {
-      // input.value = '';
-      // console.log(input.value)
+
       image.src = url;
       $modal.modal("show");
     };
-    // var reader;
-    // var file;
-    // var url;
 
     if (files && files.length > 0) {
       let file = files[0];
 
-      // done(URL.createObjectURL(file));
-      // if (URL) {
-      // }
-
-      // else if (FileReader) {
       reader = new FileReader();
       reader.onload = function (e) {
-        //   const ima = new Image();
-        //   ima.src = e.target.result;
-        //   ima.onload = function() {
-        //     const width = this.width;
-        //     const height = this.height;
-        //     console.log('Width: ' + width + 'px, Height: ' + height + 'px');
-        // };
-
         done(reader.result);
       };
       reader.readAsDataURL(file);
@@ -271,26 +252,26 @@ window.paypal.Buttons({
   onApprove: function(data, actions) {
       // Capture the funds from the transaction
       return actions.order.capture().then(function(details) {
-          console.log('Custom ID:', details.purchase_units[0].custom_id);
+          //console.log('Custom ID:', details.purchase_units[0].custom_id);
+        $("#alert_success_refill").removeClass("hidden").addClass("show");
       });
   },
   onError: function(err) {
       // Show an error message to your buyer
       console.error('An error occurred during the transaction', err);
-      alert('An error occurred during the transaction. Please try again.');
   }
 }).render('#paypal-button-container'); // Display payment button on your web page
 
 function handlePrice() {
   var selectElement = document.getElementById('priceSelected');
   var selectedValue = selectElement.value;
-  console.log('You selected: ', selectedValue);
+  //console.log('You selected: ', selectedValue);
   return selectedValue;
 }
 
 function handleCustomVariable() {
   var selectElement = document.getElementById('email');
   var selectedValue = selectElement.value;
-  console.log('You custom variable: ', selectedValue);
+  //console.log('You custom variable: ', selectedValue);
   return selectedValue;
 }

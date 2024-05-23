@@ -13,10 +13,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       rel="stylesheet"
     />
-    <!-- <link
-      href="https://foliotek.github.io/Croppie/croppie.css"
-      rel="stylesheet"
-    /> -->
 
     <link href="./css/bootstrap.min.css" rel="stylesheet" />
     <link
@@ -24,13 +20,7 @@
       rel="stylesheet"
     />
     <link href="./css/style.css" rel="stylesheet" />
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id=BAAfoadq2mmgKJZy7rfSOfy5DlfGPsQLaU8n3SiPugPyqdjFutpN3sMAqTm_CZq5qRV4XF6jn_9j-CusAE&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
-    <script>
-      paypal.HostedButtons({
-        hostedButtonId: "SMDMCJWF3G85E",
-      }).render("#paypal-container-SMDMCJWF3G85E")
-    </script> -->
-    <script src="https://www.paypal.com/sdk/js?client-id=Af0fzDGrn9za3KNAox0Y-Uhl9X-xDx9DW1DzZkxhQTNE75H1JHNVfU2gea5evGOFDd4PqQ121MXP8kW2&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AbjL3hY4eZVn6xZrPx2V-dsS2T3_zC--xshT8_pSuBNncTNnRspL402tgYKtkjkVtgwZR-f-hs5xzPOF&currency=AUD"></script>
   </head>
   <body>
     <div class="page-content-wrapper">
@@ -101,7 +91,7 @@
             <div class="page-title">
               <div class="page-heading">
                 <h1>Settings</h1>
-                <p>You can update your details and purchase credits here</p>
+                <p>You can update your details and refill credits here</p>
               </div>
             </div>
             <div class="mt-4 form-wrapper">
@@ -187,6 +177,22 @@
                   </button>
                 </div>
               </div>
+              <div class="alert-backdrop fade hidden" id="alert_success_refill">
+                <div
+                  class="alert alert-success alert-dismissible mb-4"
+                  role="alert"
+                >
+                  <span id="msg_success">Successfully recharged credits! Please give it a few minutes for it to reflect in your account</span>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    onclick="closeAlertAndRemoveBackdrop(this)"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
               <div class="profile-form-box">
                 <form id="profile-form">
                   <div class="form-group">
@@ -202,10 +208,12 @@
                   </div>
 
                   <div class="form-group">
-                    <lable class="label">Price</lable>
+                    <lable class="label">Recharge credits</lable>
                     <select class="form-control" name="type" id="priceSelected" onchange="handlePrice()" required>
+                      <option value="1">Demo 5</option>
                       <option value="5">Mini 50</option>
-                      <option value="10">Small 100</option>
+                      <option value="15" selected="selected">Standard 200</option>
+                      <option value="35">Mega 600</option>
                     </select>
                   </div>
 
@@ -213,13 +221,6 @@
 
                 </form>
               </div>
-              <!-- <div>
-
-                <div id="paypal-container-SMDMCJWF3G85E" ></div>
-
-                </div>
-                
-              </div> -->
           </div>
         </div>
       </div>
