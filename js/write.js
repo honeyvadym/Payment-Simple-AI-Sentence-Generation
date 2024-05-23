@@ -125,8 +125,9 @@ function process() {
     .get();
   const inputQuery = $("#myTextarea").text().trim();
 
-  console.log("inputqert", inputQuery.length);
+  // console.log("inputqert", inputQuery.length);
   if (selectedOptions && inputQuery && inputQuery.length > 200) {
+    //$("#myTextarea").text("dsfsafsadfasdf");
     $(".se-pre-con").fadeIn("slow");
     $.ajax({
       url: "https://api.toddles.cloud/process",
@@ -515,22 +516,22 @@ function makeText($item, isDropped = false, addBr = false) {
 }
 
 $(function () {
-  $("#blockListButton").on("click", function () {
-    if ($("#myTextarea").hasClass("noEdit")) {
-      return false;
-    }
-    $("#blocksList").toggle();
-  });
-  $(document).on("click", function (e) {
-    if (
-      e.target !== $("#blockListButton")[0] &&
-      e.target !== $("#blocksList")[0] &&
-      !$.contains($("#blockListButton")[0], e.target) &&
-      !$.contains($("#blocksList")[0], e.target)
-    ) {
-      $("#blocksList").hide();
-    }
-  });
+  // $("#blockListButton").on("click", function () {
+  //   if ($("#myTextarea").hasClass("noEdit")) {
+  //     return false;
+  //   }
+  //   $("#blocksList").toggle();
+  // });
+  // $(document).on("click", function (e) {
+  //   if (
+  //     e.target !== $("#blockListButton")[0] &&
+  //     e.target !== $("#blocksList")[0] &&
+  //     !$.contains($("#blockListButton")[0], e.target) &&
+  //     !$.contains($("#blocksList")[0], e.target)
+  //   ) {
+  //     $("#blocksList").hide();
+  //   }
+  // });
   $("#search_block").on("keyup", function (e) {
     if (e.target.value) {
       var $ul_block = $("ul.block-list");
