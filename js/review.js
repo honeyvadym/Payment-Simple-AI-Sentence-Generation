@@ -2,6 +2,7 @@ $(function () {
   // setAvatar();
   initMsg();
   //getOptions();
+  $(".se-pre-con").fadeOut("slow");
 });
 
 let options;
