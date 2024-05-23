@@ -2,7 +2,7 @@ $(function () {
   // setAvatar();
   initMsg();
   getOptions();
-  getBlocks();
+  //getBlocks();
 });
 
 let options;

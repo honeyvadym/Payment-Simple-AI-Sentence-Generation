@@ -1,7 +1,7 @@
 $(function () {
   // setAvatar();
   initMsg();
-  getOptions();
+  //getOptions();
 });
 
 let options;
