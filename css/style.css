@@ -1799,6 +1799,8 @@ li.block-list-item:not(:last-child) {
 div.report-result-content {
   padding: 20px;
   min-height: 128px;
+  height: 200px !important;
+  overflow: hidden scroll;
 }
 
 div.report-result-section ul.dropdown-menu {
