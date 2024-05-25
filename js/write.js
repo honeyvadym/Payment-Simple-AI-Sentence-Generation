@@ -54,7 +54,11 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${box}>${box}</input>`;
+          if ( box.default == "yes" ){
+            checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="cb-${i}" value=${box.name} checked>${box.name}</input>`;
+          } else {
+            checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="cb-${i}" value=${box.name}>${box.name}</input>`;
+          }
           if ((i + 1) % 3 == 0 && i != 0) {
             checkBoxHtml = checkBoxHtml + "</div><div>";
           }
