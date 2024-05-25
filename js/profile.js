@@ -1,5 +1,7 @@
 $(function () {
   getProfile();
+  getOptions();
+  //setDefaultSettings();
   $("#feedback-form").validate({
     submitHandler: function (form) {
       $(".se-pre-con").fadeIn(300);
@@ -42,7 +44,179 @@ $(function () {
     },
   });
 });
+function clickSelectBoxFunc(index, status) {
+  const selectedOptions = $("#options-box select")
+    .map(function () {
+      return { name: $(this).attr("id"), value: $(this).val() };
+    })
+    .get();
+  console.log(selectedOptions);
 
+  if (selectedOptions) {
+    $.ajax({
+      url: "https://api.toddles.cloud/set_default",
+      type: "POST",
+      data: JSON.stringify({
+        type: "option",
+        name: selectedOptions[index].name,
+        value: selectedOptions[index].value,
+      }),
+      headers: {
+        Authorization: getAuthHeader(),
+      },
+      success: function (response) {
+        alert("Successfully Changed settings!!!");
+      },
+      error: function (jqXHR, exception) {
+        redirectAjaxError(jqXHR);
+        let msgTxt = "";
+        switch (jqXHR.status) {
+          case 400:
+            msgTxt = "Erorr:Bad Request.";
+            break;
+          case 401:
+            msgTxt = "Erorr:Token expired, please sign in again.";
+            break;
+          case 402:
+            msgTxt = "402 Error";
+            break;
+          case 404:
+            msgTxt = "Not Found:Server cannot find the requested URL";
+            break;
+          case 500:
+            msgTxt = "Error:Internal Server Error";
+            break;
+          default:
+            msgTxt = "Error";
+            break;
+        }
+        $("#msg_drafts_error").html(msgTxt);
+
+        $("#alert_drafts_error")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        $("#alert_drafts_error .alert")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        close_alert_after_5();
+      },
+    });
+  }
+}
+function clickCheckBoxFunc(index, status) {
+  const checkboxOptions = $("#check-boxes input")
+    .map(function () {
+      return $(this).val();
+    })
+    .get();
+  if (checkboxOptions) {
+    $.ajax({
+      url: "https://api.toddles.cloud/set_default",
+      type: "POST",
+      data: JSON.stringify({
+        type: "box",
+        name: checkboxOptions[index],
+        value: status == 1 ? "no" : "yes",
+      }),
+      headers: {
+        Authorization: getAuthHeader(),
+      },
+      success: function (response) {
+        console.log("process", response);
+        alert("Successfully Changed settings!!!");
+      },
+      error: function (jqXHR, exception) {
+        redirectAjaxError(jqXHR);
+        let msgTxt = "";
+        switch (jqXHR.status) {
+          case 400:
+            msgTxt = "Erorr:Bad Request.";
+            break;
+          case 401:
+            msgTxt = "Erorr:Token expired, please sign in again.";
+            break;
+          case 402:
+            msgTxt = "402 Error";
+            break;
+          case 404:
+            msgTxt = "Not Found:Server cannot find the requested URL";
+            break;
+          case 500:
+            msgTxt = "Error:Internal Server Error";
+            break;
+          default:
+            msgTxt = "Error";
+            break;
+        }
+        $("#msg_drafts_error").html(msgTxt);
+
+        $("#alert_drafts_error")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        $("#alert_drafts_error .alert")
+          .removeClass("hidden")
+          .addClass("show")
+          .fadeIn();
+        close_alert_after_5();
+      },
+    });
+  }
+}
+function getOptions() {
+  $.ajax({
+    url: "https://api.toddles.cloud/options",
+    type: "GET",
+    headers: {
+      Authorization: getAuthHeader(),
+    },
+    success: function (response) {
+      if (response.error == undefined) {
+        $(".se-pre-con").fadeOut("slow");
+        let html = "",
+          checkBoxHtml = "<div>";
+        let { options, boxes } = response;
+        console.log("options", options);
+        for (let i = 0; i < options.length; i++) {
+          const option = options[i];
+          html += `<label htmlFor="${option.name}">${option.name}:</label>
+          <select id="${option.name}" onchange="clickSelectBoxFunc(${i},'${option.default}')">`;
+          for (let j = 0; j < option.options.length; j++) {
+            const child = option.options[j];
+            const isSelected = child === option?.default ? "selected" : "";
+            html += `<option key="${j}" value="${child}" ${isSelected}>${child}</option>`;
+          }
+          html += "</select>";
+        }
+
+        for (let i = 0; i < boxes.length; i++) {
+          const box = boxes[i];
+          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
+            box.name
+          } onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
+            box.default == "yes" && "checked"
+          }>${box.name}</input>`;
+          if ((i + 1) % 3 == 0 && i != 0) {
+            checkBoxHtml = checkBoxHtml + "</div><div>";
+          }
+        }
+        checkBoxHtml = checkBoxHtml + "</div>";
+        $("#options-box").html(html);
+        $("#check-boxes").html(checkBoxHtml);
+      } else {
+        console.log("getOptions", response);
+        // localStorage.clear();
+        // localStorage.setItem("error", "Try again");
+        // window.location.href="./login.html";
+      }
+    },
+    error: function (jqXHR, exception) {
+      redirectAjaxError(jqXHR);
+    },
+  });
+}
 function getProfile() {
   $.ajax({
     url: "https://api.toddles.cloud/profile",
@@ -65,7 +239,6 @@ function getProfile() {
         $("#first_name").val(response.first_name);
         $("#last_name").val(response.last_name);
         $("#email").val(response.email);
-
       } else {
         $("#msg").html(response.error);
         $("#alert").removeClass("hidden").addClass("show");
@@ -96,7 +269,6 @@ $(document).ready(function () {
     var files = e.target.files;
     editingEl = $(this).attr("id");
     var done = function (url) {
-
       image.src = url;
       $modal.modal("show");
     };
@@ -235,39 +407,40 @@ function validateMFA() {
   });
 }
 
-window.paypal.Buttons({
-  createOrder: function(data, actions) {
+window.paypal
+  .Buttons({
+    createOrder: function (data, actions) {
       // Set up the transaction
       let currentPrice = handlePrice();
       let customVariable = handleCustomVariable();
       return actions.order.create({
-          purchase_units: [{
-              amount: {
-                  currency_code: "AUD",
-                  value: currentPrice,
-
-              },
-              custom_id: customVariable,
-
-          }]
-          
+        purchase_units: [
+          {
+            amount: {
+              currency_code: "AUD",
+              value: currentPrice,
+            },
+            custom_id: customVariable,
+          },
+        ],
       });
-  },
-  onApprove: function(data, actions) {
+    },
+    onApprove: function (data, actions) {
       // Capture the funds from the transaction
-      return actions.order.capture().then(function(details) {
-          //console.log('Custom ID:', details.purchase_units[0].custom_id);
+      return actions.order.capture().then(function (details) {
+        //console.log('Custom ID:', details.purchase_units[0].custom_id);
         $("#alert_success_refill").removeClass("hidden").addClass("show");
       });
-  },
-  onError: function(err) {
+    },
+    onError: function (err) {
       // Show an error message to your buyer
-      console.error('An error occurred during the transaction', err);
-  }
-}).render('#paypal-button-container'); // Display payment button on your web page
+      console.error("An error occurred during the transaction", err);
+    },
+  })
+  .render("#paypal-button-container"); // Display payment button on your web page
 
 function handlePrice() {
-  var selectElement = document.getElementById('priceSelected');
+  var selectElement = document.getElementById("priceSelected");
   var selectedValue = selectElement.value;
   //console.log('You selected: ', selectedValue);
   return selectedValue;
@@ -277,8 +450,8 @@ function hideConfirmation() {
 }
 
 function handleCustomVariable() {
-  var selectElement = document.getElementById('email');
+  var selectElement = document.getElementById("email");
   var selectedValue = selectElement.value;
   //console.log('You custom variable: ', selectedValue);
-  return 'toddles|' + selectedValue;
+  return "toddles|" + selectedValue;
 }
