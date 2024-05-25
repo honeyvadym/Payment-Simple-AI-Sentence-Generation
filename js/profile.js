@@ -45,6 +45,7 @@ $(function () {
   });
 });
 function clickSelectBoxFunc(index, status) {
+  $(".se-pre-con").fadeIn(300);
   const selectedOptions = $("#options-box select")
     .map(function () {
       return { name: $(this).attr("id"), value: $(this).val() };
@@ -65,7 +66,9 @@ function clickSelectBoxFunc(index, status) {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
-        alert("Successfully Changed settings!!!");
+        $(".alert.alert-success").removeAttr("style");
+        $("#alert_success").removeClass("hidden").addClass("show");
+        $(".se-pre-con").fadeOut("slow");
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);
@@ -106,6 +109,7 @@ function clickSelectBoxFunc(index, status) {
   }
 }
 function clickCheckBoxFunc(index, status) {
+  $(".se-pre-con").fadeIn(300);
   const checkboxOptions = $("#check-boxes input")
     .map(function () {
       return $(this).val();
@@ -124,8 +128,10 @@ function clickCheckBoxFunc(index, status) {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
-        console.log("process", response);
-        alert("Successfully Changed settings!!!");
+        console.log(response);
+        $(".alert.alert-success").removeAttr("style");
+        $("#alert_success").removeClass("hidden").addClass("show");
+        $(".se-pre-con").fadeOut("slow");
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);
