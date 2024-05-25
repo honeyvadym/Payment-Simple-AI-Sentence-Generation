@@ -31,7 +31,6 @@ $(function () {
       var data = {
         username: $("input[name=username]").val(),
         password: $("input[name=password]").val(),
-        reg_num: $("input[name=reg_number]").val(),
       };
       data = JSON.stringify(data);
 

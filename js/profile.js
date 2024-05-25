@@ -245,24 +245,10 @@ window.paypal.Buttons({
               amount: {
                   currency_code: "AUD",
                   value: currentPrice,
-                  breakdown: {
-                    item_total: {
-                          currency_code: "AUD",
-                          value: currentPrice
-                        }
-                  }
+
               },
               custom_id: customVariable,
-              items: [
-                      {
-                        name: "Toddles_Recharge",
-                        unit_amount: {
-                          currency_code: "AUD",
-                          value: currentPrice
-                        },
-                        quantity: "1"
-                      }
-                    ]
+
           }]
           
       });
@@ -294,5 +280,5 @@ function handleCustomVariable() {
   var selectElement = document.getElementById('email');
   var selectedValue = selectElement.value;
   //console.log('You custom variable: ', selectedValue);
-  return selectedValue;
+  return 'toddles|' + selectedValue;
 }
