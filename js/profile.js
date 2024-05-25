@@ -243,10 +243,28 @@ window.paypal.Buttons({
       return actions.order.create({
           purchase_units: [{
               amount: {
-                  value: currentPrice // Replace this value with the amount to be charged
+                  currency_code: "AUD",
+                  value: currentPrice,
+                  breakdown: {
+                    item_total: {
+                          currency_code: "AUD",
+                          value: currentPrice
+                        }
+                  }
               },
               custom_id: customVariable,
+              items: [
+                      {
+                        name: "Toddles_Recharge",
+                        unit_amount: {
+                          currency_code: "AUD",
+                          value: currentPrice
+                        },
+                        quantity: "1"
+                      }
+                    ]
           }]
+          
       });
   },
   onApprove: function(data, actions) {
@@ -267,6 +285,9 @@ function handlePrice() {
   var selectedValue = selectElement.value;
   //console.log('You selected: ', selectedValue);
   return selectedValue;
+}
+function hideConfirmation() {
+  $("#alert_success_refill").removeClass("show").addClass("hidden");
 }
 
 function handleCustomVariable() {
