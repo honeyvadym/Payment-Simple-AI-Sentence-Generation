@@ -182,7 +182,7 @@ function getOptions() {
       if (response.error == undefined) {
         $(".se-pre-con").fadeOut("slow");
         let html = "",
-          checkBoxHtml = "<div>";
+          checkBoxHtml = "<div class='each-check-box'>";
         let { options, boxes } = response;
         console.log("options", options);
         for (let i = 0; i < options.length; i++) {

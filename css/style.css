@@ -2407,7 +2407,18 @@ Profile PAGE - END
 .options-container label {
   font-weight: bold;
 }
-
+.options-div {
+  display: flex;
+  justify-content: center;
+}
+.each-check-box {
+  display: flex;
+  justify-content: center;
+}
+.check-boxes-div {
+  display: flex;
+  justify-content: center;
+}
 .options-container select {
   min-width: 0 !important;
 }
@@ -2415,6 +2426,7 @@ Profile PAGE - END
   margin-left: 10px;
   margin-right: 4px;
 }
+
 #check-boxes {
   text-transform: capitalize;
   width: 260px;
