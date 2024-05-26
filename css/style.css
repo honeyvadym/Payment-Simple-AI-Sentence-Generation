@@ -2438,13 +2438,14 @@ Profile PAGE - END
   visibility: hidden;
 }
 .updated-notification-region-alert {
-  background: url("../images/loader.gif") center no-repeat #fff;
-  padding: 10px;
-  border-radius: 25px;
-  width: 150px;
-  height: 50px;
+  background-color: rgb(27 123 33);
+  border-radius: 8px;
+  width: 350px;
+  height: 28px;
   text-align: center;
   font-size: 16px;
+  color: white;
+  padding-top: 2px;
 }
 /* 
   Workspace style end
