@@ -45,7 +45,8 @@ $(function () {
   });
 });
 function clickSelectBoxFunc(index, status) {
-  $(".se-pre-con").fadeIn(300);
+  $(".updated-notification-region").css({ visibility: "visible" });
+  $(".updated-notification-region").fadeIn(300);
   const selectedOptions = $("#options-box select")
     .map(function () {
       return { name: $(this).attr("id"), value: $(this).val() };
@@ -66,9 +67,7 @@ function clickSelectBoxFunc(index, status) {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
-        $(".alert.alert-success").removeAttr("style");
-        $("#alert_success").removeClass("hidden").addClass("show");
-        $(".se-pre-con").fadeOut("slow");
+        $(".updated-notification-region").css({ visibility: "hidden" });
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);
@@ -109,7 +108,9 @@ function clickSelectBoxFunc(index, status) {
   }
 }
 function clickCheckBoxFunc(index, status) {
-  $(".se-pre-con").fadeIn(300);
+  $(".updated-notification-region").css({ visibility: "visible" });
+  $(".updated-notification-region").fadeIn(300);
+
   const checkboxOptions = $("#check-boxes input")
     .map(function () {
       return $(this).val();
@@ -129,9 +130,9 @@ function clickCheckBoxFunc(index, status) {
       },
       success: function (response) {
         console.log(response);
-        $(".alert.alert-success").removeAttr("style");
-        $("#alert_success").removeClass("hidden").addClass("show");
-        $(".se-pre-con").fadeOut("slow");
+
+        $(".updated-notification-region").css({ visibility: "hidden" });
+        // $(".updated-notification-region").fadeOut("slow");
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);

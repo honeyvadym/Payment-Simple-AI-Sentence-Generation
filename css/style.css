@@ -2431,6 +2431,21 @@ Profile PAGE - END
   text-transform: capitalize;
   width: 260px;
 }
+.updated-notification-region {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  visibility: hidden;
+}
+.updated-notification-region-alert {
+  background: url("../images/loader.gif") center no-repeat #fff;
+  padding: 10px;
+  border-radius: 25px;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 16px;
+}
 /* 
   Workspace style end
 */
