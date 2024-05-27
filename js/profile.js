@@ -202,7 +202,7 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value="${
+          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="feat-${i}" value="${
             box.name
           }" onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
             box.default == "yes" && "checked"
