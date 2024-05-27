@@ -37,7 +37,7 @@ function getOptions() {
       if (response.error == undefined) {
         $(".se-pre-con").fadeOut("slow");
         let html = "",
-          checkBoxHtml = "<div >";
+          checkBoxHtml = "<div class='each-check-box'>";
         let { options, boxes } = response;
 
         for (let i = 0; i < options.length; i++) {
@@ -54,13 +54,13 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          if ( box.default == "yes" ){
-            checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="cb-${i}" value=${box.name} checked>${box.name}</input>`;
-          } else {
-            checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="cb-${i}" value=${box.name}>${box.name}</input>`;
-          }
+          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
+            box.name
+          } onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
+            box.default == "yes" && "checked"
+          }>${box.name}</input></div>`;
           if ((i + 1) % 3 == 0 && i != 0) {
-            checkBoxHtml = checkBoxHtml + "</div><div>";
+            checkBoxHtml = checkBoxHtml + "</div><div class='each-check-box'>";
           }
         }
         checkBoxHtml = checkBoxHtml + "</div>";

@@ -45,8 +45,8 @@ $(function () {
   });
 });
 function clickSelectBoxFunc(index, status) {
-  $(".updated-notification-region").css({ visibility: "visible" });
-  $(".updated-notification-region").fadeIn(300);
+  // $(".check-font").css({ visibility: "visible" });
+  $(".updated-section").fadeIn(100);
   const selectedOptions = $("#options-box select")
     .map(function () {
       return { name: $(this).attr("id"), value: $(this).val() };
@@ -67,7 +67,8 @@ function clickSelectBoxFunc(index, status) {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
-        $(".updated-notification-region").css({ visibility: "hidden" });
+        $(".updated-section").fadeOut();
+        // $(".check-font").css({ visibility: "hidden" });
       },
       error: function (jqXHR, exception) {
         redirectAjaxError(jqXHR);
@@ -108,8 +109,9 @@ function clickSelectBoxFunc(index, status) {
   }
 }
 function clickCheckBoxFunc(index, status) {
-  $(".updated-notification-region").css({ visibility: "visible" });
-  $(".updated-notification-region").fadeIn(300);
+  // $(".check-font").css({ visibility: "visible" });
+  // $(".check-font").fadeIn(300);
+  $(".updated-section").fadeIn(100);
 
   const checkboxOptions = $("#check-boxes input")
     .map(function () {
@@ -130,8 +132,8 @@ function clickCheckBoxFunc(index, status) {
       },
       success: function (response) {
         console.log(response);
-
-        $(".updated-notification-region").css({ visibility: "hidden" });
+        $(".updated-section").fadeOut();
+        //$(".check-font").css({ visibility: "hidden" });
         // $(".updated-notification-region").fadeOut("slow");
       },
       error: function (jqXHR, exception) {
@@ -200,13 +202,13 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
+          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
             box.name
           } onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
             box.default == "yes" && "checked"
-          }>${box.name}</input>`;
+          }>${box.name}</input></div>`;
           if ((i + 1) % 3 == 0 && i != 0) {
-            checkBoxHtml = checkBoxHtml + "</div><div>";
+            checkBoxHtml = checkBoxHtml + "</div><div class='each-check-box'>";
           }
         }
         checkBoxHtml = checkBoxHtml + "</div>";
