@@ -381,6 +381,7 @@ div.container-wrapper {
 
 .page-container-wrapper > div:not(.page-title) {
   font-size: 14px !important;
+  margin-top: -20px;
 }
 
 .page-wrapper .btn {
@@ -1906,7 +1907,17 @@ Report PAGE - END
   min-width: 100%;
   padding: 0 60px;
 }
-
+.default-settings-region {
+  display: flex;
+  justify-content: center;
+}
+.default-settings-text {
+  width: 600px;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
 .container-wrapper .row {
   flex-grow: 1;
 }
@@ -2384,6 +2395,11 @@ Profile PAGE - END
   justify-content: start;
   align-items: center;
   margin-bottom: 1rem;
+  width: 600px;
+  margin-left: 10px;
+}
+.options-container-check {
+  margin-bottom: 1rem;
 }
 
 .options-container label {
@@ -2411,9 +2427,15 @@ Profile PAGE - END
   display: flex;
   justify-content: center;
 }
+.check-box {
+  margin-left: 10px;
+}
+.checkbox-onediv {
+  width: 200px;
+}
 .each-check-box {
   display: flex;
-  justify-content: center;
+  margin-bottom: 10px;
 }
 .check-boxes-div {
   display: flex;
@@ -2429,24 +2451,28 @@ Profile PAGE - END
 
 #check-boxes {
   text-transform: capitalize;
-  width: 260px;
 }
 .updated-notification-region {
   display: flex;
   justify-content: center;
-  height: 60px;
-  visibility: hidden;
+  font-size: 20px;
+  height: 40px;
+  margin-left: 30px;
+  /* display: none; */
 }
-.updated-notification-region-alert {
-  background-color: rgb(27 123 33);
-  border-radius: 8px;
-  width: 350px;
-  height: 28px;
-  text-align: center;
-  font-size: 16px;
+
+.updated-section {
+  background-color: green;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  font-size: 12px;
   color: white;
-  padding-top: 2px;
+  display: none;
 }
+
 /* 
   Workspace style end
 */
