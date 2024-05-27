@@ -200,9 +200,9 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
+          checkBoxHtml += `<input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value="${
             box.name
-          } onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
+          }" onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
             box.default == "yes" && "checked"
           }>${box.name}</input>`;
           if ((i + 1) % 3 == 0 && i != 0) {
