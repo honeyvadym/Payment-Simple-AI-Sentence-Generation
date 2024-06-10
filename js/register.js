@@ -28,10 +28,24 @@ $(function () {
     },
     submitHandler: function (form) {
       $(".se-pre-con").fadeIn(300);
-      var data = {
-        username: $("input[name=username]").val(),
-        password: $("input[name=password]").val(),
-      };
+      //search for referral
+      const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+      });
+      let referral = params.ref;
+      if (referral == null || referral == undefined || referral == ''){
+        var data = {
+          username: $("input[name=username]").val(),
+          password: $("input[name=password]").val()
+        };
+      }else{
+        var data = {
+          username: $("input[name=username]").val(),
+          password: $("input[name=password]").val(),
+          referral: referral,
+        }
+      }
+
       data = JSON.stringify(data);
 
       $.ajax({
@@ -71,6 +85,7 @@ function initMsg() {
     $("#alert").removeClass("hidden").addClass("show");
     localStorage.removeItem("error");
   }
+  
 }
 
 function fakeLogin() {
