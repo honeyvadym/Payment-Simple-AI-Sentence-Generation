@@ -133,7 +133,6 @@ function process() {
 
   // console.log("inputqert", inputQuery.length);
   if (selectedOptions && inputQuery && inputQuery.length > 200) {
-    //$("#myTextarea").text("dsfsafsadfasdf");
     $(".se-pre-con").fadeIn("slow");
     $.ajax({
       url: "https://api.toddles.cloud/process",
