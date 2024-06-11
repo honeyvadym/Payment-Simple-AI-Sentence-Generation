@@ -84,12 +84,11 @@ function process() {
       },
       success: function (response) {
         if (response.success) {
-          $("#options-box").addClass("hidden");
-          $("#process-btn-box").addClass("hidden");
+          $("#exportTextarea").removeClass("hidden");
           $("#export-btn-box").removeClass("hidden");
-          $("#myTextarea").html(translateDOM(response.response));
+          $("#exportTextarea").html(translateDOM(response.response));
           textareaAutoResize($(".report-result-content")[0]);
-          $("#myTextarea").addClass("noEdit").attr("contenteditable", false);
+          $("#exportTextarea").addClass("noEdit").attr("contenteditable", false);
           $(".se-pre-con").fadeOut("slow");
           options = response;
           console.log("process", response);
@@ -159,6 +158,7 @@ function reset() {
   $("#options-box").removeClass("hidden");
   $("#process-btn-box").removeClass("hidden");
   $("#export-btn-box").addClass("hidden");
+  $("#exportTextarea").addClass("hidden");
   $("#myTextarea").html("");
   textareaAutoResize($(".report-result-content")[0]);
   $(".se-pre-con").fadeOut("slow");

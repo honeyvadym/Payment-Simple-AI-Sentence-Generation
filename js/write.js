@@ -148,11 +148,9 @@ function process() {
       },
       success: function (response) {
         if (response.success) {
-          $("#options-box").addClass("hidden");
-          $("#check-boxes").addClass("hidden");
-          $("#process-btn-box").addClass("hidden");
+          $("#exportTextarea").removeClass("hidden");
           $("#export-btn-box").removeClass("hidden");
-          $("#myTextarea").html(translateDOM(response.response));
+          $("#exportTextarea").html(translateDOM(response.response));
           textareaAutoResize($(".report-result-content")[0]);
           blockDragStart();
           $(".se-pre-con").fadeOut("slow");
@@ -221,11 +219,9 @@ function process() {
 
 function reset() {
   $(".se-pre-con").fadeIn();
-  $("#options-box").removeClass("hidden");
-  $("#check-boxes").removeClass("hidden");
-  $("#process-btn-box").removeClass("hidden");
   $("#export-btn-box").addClass("hidden");
   $("#myTextarea").html("");
+  $("#exportTextarea").addClass("hidden");
   textareaAutoResize($(".report-result-content")[0]);
   $(".se-pre-con").fadeOut("slow");
 }
