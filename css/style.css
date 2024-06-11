@@ -1799,8 +1799,8 @@ li.block-list-item:not(:last-child) {
 
 div.report-result-content {
   padding: 20px;
-  min-height: 128px;
-  height: 200px !important;
+  min-height: 300px;
+  height: 400px !important;
   overflow: hidden scroll;
 }
 
