@@ -134,19 +134,10 @@
               <h4 class="mt-3 mb-12">Content</h4>
               <div
                 class="form-control report-result-content shadow-box"
-                style="height: 200px"
+                style="height: 200px; font-size: 14px;"
                 id="myTextarea"
                 contenteditable="true"
               ></div>
-              <!-- <textarea
-
-                class="form-control report-result-content shadow-box"
-                style="height: 200px"
-                id="myTextarea"
-                name="w3review"
-                rows="4"
-                cols="50"
-              ></textarea> -->
               <div class="d-flex justify-center mt-3" id="process-btn-box">
                 <button
                   class="btn btn-danger btn-reports non-export"
@@ -155,6 +146,12 @@
                   Process
                 </button>
               </div>
+              <div
+                class="form-control report-result-content shadow-box hidden"
+                style="height: 200px; margin-top: 20px;; font-size: 14px;"
+                id="exportTextarea"
+                contenteditable="true"
+              ></div>
               <div
                 id="export-btn-box"
                 class="d-flex justify-center align-center gap-4 mt-4 non-export hidden"

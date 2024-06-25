@@ -86,7 +86,7 @@
             <div class="page-title">
               <div class="page-heading">
                 <h1>Settings</h1>
-                <p>You can update your details and refill credits here</p>
+                <p>You can update your defaults and refill credits here</p>
               </div>
             </div>
             <div class="mt-4 form-wrapper">
@@ -211,8 +211,8 @@
               </div>
               <div class="profile-form-box">
                 <form id="profile-form">
-                  <div class="form-group">
-                    <lable>Email</lable>
+                  <div class="form-group mb-3">
+                    <lable><b>Email</b></lable>
                     <input
                       type="email"
                       class="form-control pro-font"
@@ -221,9 +221,19 @@
                       required
                       disabled
                     />
+                    <lable><b>Referral</b></lable>
+                    <input
+                      type="url"
+                      class="form-control pro-font"
+                      id="referral"
+                      name="referral"
+                      required
+                      disabled
+                    />
+                   <p>Invite your friends and colleagues to utilize Toddles by sending them this link for extra credits upon registration, you will also receive a bonus when they top up!</p>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group mt-3">
                     <lable class="label">Recharge credits</lable>
                     <select
                       class="form-control"
@@ -235,9 +245,9 @@
                       <!-- <option value="1">Demo (5 credits) - $1</option> -->
                       <option value="5">Mini (50 credits) - $5</option>
                       <option value="15" selected="selected">
-                        Standard (200 credits) - $15
+                        Standard (175 credits) - $15
                       </option>
-                      <option value="35">Mega (600 credits) - $35</option>
+                      <option value="35">Mega (400 credits) - $30</option>
                     </select>
                   </div>
 

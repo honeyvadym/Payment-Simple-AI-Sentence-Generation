@@ -52,7 +52,7 @@ function clickSelectBoxFunc(index, status) {
       return { name: $(this).attr("id"), value: $(this).val() };
     })
     .get();
-  console.log(selectedOptions);
+  // console.log(selectedOptions);
 
   if (selectedOptions) {
     $.ajax({
@@ -131,7 +131,7 @@ function clickCheckBoxFunc(index, status) {
         Authorization: getAuthHeader(),
       },
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         $(".updated-section").fadeOut();
         //$(".check-font").css({ visibility: "hidden" });
         // $(".updated-notification-region").fadeOut("slow");
@@ -187,7 +187,7 @@ function getOptions() {
         let html = "",
           checkBoxHtml = "<div class='each-check-box'>";
         let { options, boxes } = response;
-        console.log("options", options);
+        // console.log("options", options);
         for (let i = 0; i < options.length; i++) {
           const option = options[i];
           html += `<label htmlFor="${option.name}">${option.name}:</label>
@@ -202,9 +202,9 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
+          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="feat-${i}" value="${
             box.name
-          } onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
+          }" onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
             box.default == "yes" && "checked"
           }>${box.name}</input></div>`;
           if ((i + 1) % 3 == 0 && i != 0) {
@@ -215,7 +215,7 @@ function getOptions() {
         $("#options-box").html(html);
         $("#check-boxes").html(checkBoxHtml);
       } else {
-        console.log("getOptions", response);
+        // console.log("getOptions", response);
         // localStorage.clear();
         // localStorage.setItem("error", "Try again");
         // window.location.href="./login.html";
@@ -244,10 +244,8 @@ function getProfile() {
             setupMFA();
           });
         }
-        $("#registration").val(response.registration);
-        $("#first_name").val(response.first_name);
-        $("#last_name").val(response.last_name);
         $("#email").val(response.email);
+        $("#referral").val("https://toddles.cloud/register.html?ref="+response.referral)
       } else {
         $("#msg").html(response.error);
         $("#alert").removeClass("hidden").addClass("show");
@@ -320,7 +318,7 @@ $(document).ready(function () {
       canvas.toBlob(function (blob) {
         // Calculate the byte size of the blob
         var byteSize = blob.size;
-        console.log("Canvas byte size: " + byteSize + " bytes");
+        // console.log("Canvas byte size: " + byteSize + " bytes");
       }, "image/png");
 
       $("#img_" + editingEl).attr("src", canvas.toDataURL());

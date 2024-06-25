@@ -54,11 +54,13 @@ function getOptions() {
 
         for (let i = 0; i < boxes.length; i++) {
           const box = boxes[i];
-          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="vehicle${i}" value=${
+
+          checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="feat-${i}" value="${
             box.name
-          } onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
+          }" onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
             box.default == "yes" && "checked"
           }>${box.name}</input></div>`;
+
           if ((i + 1) % 3 == 0 && i != 0) {
             checkBoxHtml = checkBoxHtml + "</div><div class='each-check-box'>";
           }
@@ -131,7 +133,6 @@ function process() {
 
   // console.log("inputqert", inputQuery.length);
   if (selectedOptions && inputQuery && inputQuery.length > 200) {
-    //$("#myTextarea").text("dsfsafsadfasdf");
     $(".se-pre-con").fadeIn("slow");
     $.ajax({
       url: "https://api.toddles.cloud/process",
@@ -146,11 +147,9 @@ function process() {
       },
       success: function (response) {
         if (response.success) {
-          $("#options-box").addClass("hidden");
-          $("#check-boxes").addClass("hidden");
-          $("#process-btn-box").addClass("hidden");
+          $("#exportTextarea").removeClass("hidden");
           $("#export-btn-box").removeClass("hidden");
-          $("#myTextarea").html(translateDOM(response.response));
+          $("#exportTextarea").html(translateDOM(response.response));
           textareaAutoResize($(".report-result-content")[0]);
           blockDragStart();
           $(".se-pre-con").fadeOut("slow");
@@ -219,11 +218,9 @@ function process() {
 
 function reset() {
   $(".se-pre-con").fadeIn();
-  $("#options-box").removeClass("hidden");
-  $("#check-boxes").removeClass("hidden");
-  $("#process-btn-box").removeClass("hidden");
   $("#export-btn-box").addClass("hidden");
   $("#myTextarea").html("");
+  $("#exportTextarea").addClass("hidden");
   textareaAutoResize($(".report-result-content")[0]);
   $(".se-pre-con").fadeOut("slow");
 }
