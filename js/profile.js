@@ -204,9 +204,9 @@ function getOptions() {
           const box = boxes[i];
           checkBoxHtml += `<div class="checkbox-onediv"><input type="checkbox" class="check-box" id="check-box-name-${i}" name="feat-${i}" value="${
             box.name
-          }" onclick="clickCheckBoxFunc(${i},${box.default == "yes" ? 1 : 0})" ${
-            box.default == "yes" && "checked"
-          }>${box.name}</input></div>`;
+          }" onclick="clickCheckBoxFunc(${i},${
+            box.default == "yes" ? 1 : 0
+          })" ${box.default == "yes" && "checked"}>${box.name}</input></div>`;
           if ((i + 1) % 3 == 0 && i != 0) {
             checkBoxHtml = checkBoxHtml + "</div><div class='each-check-box'>";
           }
@@ -245,7 +245,9 @@ function getProfile() {
           });
         }
         $("#email").val(response.email);
-        $("#referral").val("https://toddles.cloud/register.html?ref="+response.referral)
+        $("#referral").val(
+          "https://toddles.cloud/register.html?ref=" + response.referral
+        );
       } else {
         $("#msg").html(response.error);
         $("#alert").removeClass("hidden").addClass("show");
